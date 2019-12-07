@@ -1,6 +1,6 @@
 package com.diasjoao.bolanatv;
 
-public class Game {
+public class Game implements java.io.Serializable{
 
     private String hour;
     private String homeTeam;
@@ -24,6 +24,10 @@ public class Game {
 
     public String getAwayTeam() {
         return awayTeam;
+    }
+
+    public String getTeams() {
+        return homeTeam + " - " + awayTeam;
     }
 
     public String getChannel() {

@@ -6,6 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ExpandableListAdapter;
+import android.widget.ExpandableListView;
+import android.widget.Toast;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -14,14 +18,16 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.LinkedHashMap;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    LinkedHashMap<String, List<Game>> gamesPerDay = null;
 
-    Map<String, ArrayList<Game>> gamesPerDay = null;
+    ExpandableListView expandableListView;
+    ExpandableListAdapter expandableListAdapter;
+    List<String> expandableListTitle;
+    LinkedHashMap<String, List<Game>> expandableListDetail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +35,50 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         new RetrieveGames().execute();
+
+        expandableListView = (ExpandableListView) findViewById(R.id.expandableListView);
+        expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+
+            @Override
+            public void onGroupExpand(int groupPosition) {
+                Toast.makeText(getApplicationContext(),
+                        expandableListTitle.get(groupPosition) + " List Expanded.",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        expandableListView.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
+
+            @Override
+            public void onGroupCollapse(int groupPosition) {
+                Toast.makeText(getApplicationContext(),
+                        expandableListTitle.get(groupPosition) + " List Collapsed.",
+                        Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v,
+                                        int groupPosition, int childPosition, long id) {
+                Toast.makeText(
+                        getApplicationContext(),
+                        expandableListTitle.get(groupPosition)
+                                + " -> "
+                                + expandableListDetail.get(
+                                expandableListTitle.get(groupPosition)).get(
+                                childPosition), Toast.LENGTH_SHORT
+                ).show();
+                return false;
+            }
+        });
     }
 
-    class RetrieveGames extends AsyncTask<String, Void, Map<String, ArrayList<Game>>> {
+    class RetrieveGames extends AsyncTask<String, Void, LinkedHashMap<String, List<Game>>> {
 
-        protected Map<String, ArrayList<Game>> doInBackground(String... urls) {
-            Map<String, ArrayList<Game>> result = new HashMap<>();
+        protected LinkedHashMap<String, List<Game>> doInBackground(String... urls) {
+            LinkedHashMap<String, List<Game>> result = new LinkedHashMap<>();
 
             try {
                 Document doc = Jsoup.connect("https://www.futebol365.pt/jogos-na-tv/?order=date").get();
@@ -71,10 +115,13 @@ public class MainActivity extends AppCompatActivity {
             return result;
         }
 
-        protected void onPostExecute(Map<String, ArrayList<Game>> result) {
+        protected void onPostExecute(LinkedHashMap<String, List<Game>> result) {
             gamesPerDay = result;
 
-
+            expandableListDetail = gamesPerDay;
+            expandableListTitle = new ArrayList<String>(expandableListDetail.keySet());
+            expandableListAdapter = new CustomExpandableListAdapter(getBaseContext(), expandableListTitle, expandableListDetail);
+            expandableListView.setAdapter(expandableListAdapter);
         }
     }
 }
