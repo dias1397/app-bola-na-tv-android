@@ -21,6 +21,14 @@ public class MainActivity extends AppCompatActivity {
     LinkedHashMap<String, List<Game>> gamesPerDay = null;
 
 
+    HashMap<String, List<Game>> unorderGamesPerChannel = null;
+    ArrayList<String> orderPerChannel = new ArrayList<>();
+    LinkedHashMap<String, List<Game>> gamesPerChannel = null;
+
+
+    HashMap<String, List<Game>> unorderGamesPerCompetition = null;
+    ArrayList<String> orderPerCompetition = new ArrayList<>();
+    LinkedHashMap<String, List<Game>> gamesPerCompetition = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +36,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Intent intent = getIntent();
+
         unorderGamesPerDay = (HashMap<String, List<Game>>)intent.getSerializableExtra("gamesPerDay");
         orderPerDay = (ArrayList<String>) intent.getSerializableExtra("orderPerDay");
-
         gamesPerDay = buildLinkedMap(orderPerDay, unorderGamesPerDay);
 
+        unorderGamesPerChannel = (HashMap<String, List<Game>>)intent.getSerializableExtra("gamesPerChannel");
+        orderPerChannel = (ArrayList<String>) intent.getSerializableExtra("orderPerChannel");
+        gamesPerChannel = buildLinkedMap(orderPerChannel, unorderGamesPerChannel);
+
+        unorderGamesPerCompetition = (HashMap<String, List<Game>>)intent.getSerializableExtra("gamesPerCompetition");
+        orderPerCompetition = (ArrayList<String>) intent.getSerializableExtra("orderPerCompetition");
+        gamesPerCompetition = buildLinkedMap(orderPerCompetition, unorderGamesPerCompetition);
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -45,10 +60,10 @@ public class MainActivity extends AppCompatActivity {
                         selectedFragment = new DateFragment(gamesPerDay);
                         break;
                     case R.id.nav_map:
-                        selectedFragment = new CompetitionFragment();
+                        selectedFragment = new CompetitionFragment(gamesPerCompetition);
                         break;
                     case R.id.nav_info:
-                        selectedFragment = new ChannelFragment();
+                        selectedFragment = new ChannelFragment(gamesPerChannel);
                         break;
                 }
 

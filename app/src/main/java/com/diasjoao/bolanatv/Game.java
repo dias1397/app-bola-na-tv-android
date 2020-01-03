@@ -2,16 +2,22 @@ package com.diasjoao.bolanatv;
 
 public class Game implements java.io.Serializable{
 
+    private String date;
     private String hour;
     private String homeTeam;
     private String awayTeam;
     private String channel;
 
-    public Game(String hour, String homeTeam, String awayTeam, String channel) {
+    public Game(String date, String hour, String homeTeam, String awayTeam, String channel) {
+        this.date = date;
         this.hour = hour;
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
         this.channel = channel;
+    }
+
+    public String getDate() {
+        return date;
     }
 
     public String getHour() {
@@ -37,7 +43,8 @@ public class Game implements java.io.Serializable{
     @Override
     public String toString() {
         return "Game{" +
-                "hour='" + hour + '\'' +
+                "date='" + date + '\'' +
+                ", hour='" + hour + '\'' +
                 ", homeTeam='" + homeTeam + '\'' +
                 ", awayTeam='" + awayTeam + '\'' +
                 ", channel='" + channel + '\'' +

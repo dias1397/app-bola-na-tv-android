@@ -61,59 +61,103 @@ public class SplashActivity extends AppCompatActivity {
 
     }
 
-    class RetrieveGames extends AsyncTask<String, Integer, LinkedHashMap<String, List<Game>>> {
+    class RetrieveGames extends AsyncTask<String, Integer, Boolean> {
 
         ProgressBar pb;
         int status = 0;
+
+        LinkedHashMap<String, List<Game>> resultByDate = new LinkedHashMap<>();
+        LinkedHashMap<String, List<Game>> resultByChannel = new LinkedHashMap<>();
+        LinkedHashMap<String, List<Game>> resultByCompetition = new LinkedHashMap<>();
 
         public void setProgressBar(ProgressBar progressBar) {
             this.pb = progressBar;
         }
 
-        protected LinkedHashMap<String, List<Game>> doInBackground(String... urls) {
-            LinkedHashMap<String, List<Game>> result = new LinkedHashMap<>();
+        protected Boolean doInBackground(String... urls) {
 
             try {
                 Document doc = Jsoup.connect("https://www.futebol365.pt/jogos-na-tv/?order=date").get();
-                Elements days = doc.getElementsByClass("left-column-group-wrapper").first().children();
+                Elements date = doc.getElementsByClass("left-column-group-wrapper").first().children();
 
                 String currentDate = null;
 
-                for (Element child : days) {
+                for (Element child : date) {
                     if (child.tagName().equals("h3")) {
                         currentDate = child.text();
                     }
                     if (child.tagName().equals("table")) {
                         ArrayList<Game> games = new ArrayList<>();
                         for (Element row : child.child(1).children()) {
-                            games.add(new Game(row.child(0).text(), row.child(1).text(), row.child(3).text(), row.child(5).text()));
+                            games.add(new Game(null, row.child(0).text(), row.child(1).text(), row.child(3).text(), row.child(5).text()));
                         }
-                        result.put(currentDate, games);
+                        resultByDate.put(currentDate, games);
                     }
-                    status++;
-                    publishProgress(status);
                 }
+
+                doc = Jsoup.connect("https://www.futebol365.pt/jogos-na-tv/?order=channel").get();
+                Elements channel = doc.getElementsByClass("left-column-group-wrapper").first().children();
+
+                String currentChannel = null;
+
+                for (Element child : channel) {
+                    if (child.tagName().equals("h3")) {
+                        currentChannel = child.text();
+                        continue;
+                    }
+                    if (child.tagName().equals("table")) {
+                        ArrayList<Game> games = new ArrayList<>();
+                        for (Element row : child.child(1).children()) {
+                            games.add(new Game(row.child(0).text(), row.child(1).text(), row.child(4).text(), row.child(6).text(), null));
+                        }
+                        resultByChannel.put(currentChannel, games);
+                    }
+                }
+
+                doc = Jsoup.connect("https://www.futebol365.pt/jogos-na-tv/?order=competition").get();
+                Elements competition = doc.getElementsByClass("left-column-group-wrapper").first().children();
+
+                String currentcompetition = null;
+
+                for (Element child : competition) {
+                    if (child.tagName().equals("h3")) {
+                        currentcompetition = child.text();
+                        continue;
+                    }
+                    if (child.tagName().equals("table")) {
+                        ArrayList<Game> games = new ArrayList<>();
+                        for (Element row : child.child(1).children()) {
+                            games.add(new Game(row.child(0).text(), row.child(1).text(), row.child(3).text(), row.child(5).text(), row.child(7).text()));
+                        }
+                        resultByCompetition.put(currentcompetition, games);
+                    }
+                }
+
 
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
-            return result;
+
+            return true;
         }
 
         @Override
-        protected void onProgressUpdate(Integer[] values) {
+        protected void onProgressUpdate(Integer... values) {
             pb.setProgress(values[0]);
             super.onProgressUpdate(values);
         }
 
-        protected void onPostExecute(LinkedHashMap<String, List<Game>> result) {
-            if (result != null) {
-                ArrayList<String> orderPerDay = new ArrayList<>(result.keySet());
+        protected void onPostExecute(Boolean result) {
+            if (resultByDate != null && resultByChannel != null && resultByCompetition != null) {
 
                 Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-                intent.putExtra("gamesPerDay", result);
-                intent.putExtra("orderPerDay", orderPerDay);
+                intent.putExtra("gamesPerDay", resultByDate);
+                intent.putExtra("orderPerDay", new ArrayList<>(resultByDate.keySet()));
+                intent.putExtra("gamesPerChannel", resultByChannel);
+                intent.putExtra("orderPerChannel", new ArrayList<>(resultByChannel.keySet()));
+                intent.putExtra("gamesPerCompetition", resultByCompetition);
+                intent.putExtra("orderPerCompetition", new ArrayList<>(resultByCompetition.keySet()));
                 startActivity(intent);
                 finish();
             }

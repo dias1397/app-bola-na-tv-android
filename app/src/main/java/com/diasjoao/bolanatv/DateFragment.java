@@ -47,7 +47,7 @@ public class DateFragment extends Fragment {
 
         expandableListView = (ExpandableListView) getView().findViewById(R.id.expandableListView);
 
-        expandableListAdapter = new CustomExpandableListAdapter(getActivity(), expandableListTitle, expandableListDetail);
+        expandableListAdapter = new CustomExpandableListAdapter(getActivity(), expandableListTitle, expandableListDetail, "Date");
         expandableListView.setAdapter(expandableListAdapter);
 
         expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
