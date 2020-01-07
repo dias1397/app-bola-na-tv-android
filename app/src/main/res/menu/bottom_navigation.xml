@@ -2,17 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/nav_lines"
+        android:id="@+id/nav_date"
         android:icon="@drawable/ic_today_black_24dp"
         android:title="Data" />
 
     <item
-        android:id="@+id/nav_map"
+        android:id="@+id/nav_competition"
         android:icon="@drawable/ic_star_black_24dp"
         android:title="Competição" />
 
     <item
-        android:id="@+id/nav_info"
+        android:id="@+id/nav_channel"
         android:icon="@drawable/ic_tv_black_24dp"
         android:title="Canal" />
 </menu>

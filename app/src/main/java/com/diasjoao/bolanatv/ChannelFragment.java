@@ -49,6 +49,7 @@ public class ChannelFragment extends Fragment {
 
         expandableListAdapter = new CustomExpandableListAdapter(getActivity(), expandableListTitle, expandableListDetail, "Channel");
         expandableListView.setAdapter(expandableListAdapter);
+        expandableListView.expandGroup(0);
 
         expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
 

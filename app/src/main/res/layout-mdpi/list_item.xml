@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:padding="6dp">
 
     <!--TextView
         android:id="@+id/expandedListItem"
@@ -27,12 +28,18 @@
         android:textColor="@android:color/black"
         android:textSize="14sp" />
 
+    <View
+        android:layout_width="1dp"
+        android:layout_height="fill_parent"
+        android:background="@android:color/darker_gray" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
         android:gravity="left|center_vertical"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingStart="5dp">
 
         <TextView
             android:id="@+id/homeTeam"
@@ -62,6 +69,11 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_weight="1" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="fill_parent"
+        android:background="@android:color/darker_gray" />
 
     <ImageView
         android:id="@+id/imageView"
