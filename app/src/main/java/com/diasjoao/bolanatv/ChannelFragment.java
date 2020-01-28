@@ -13,8 +13,8 @@ import android.widget.ExpandableListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ChannelFragment extends Fragment {
 
@@ -22,11 +22,11 @@ public class ChannelFragment extends Fragment {
     ExpandableListAdapter expandableListAdapter;
 
     List<String> expandableListTitle;
-    LinkedHashMap<String, List<Game>> expandableListDetail;
+    Map<String, List<Game>> expandableListDetail;
 
     private int lastExpandedPosition = -1;
 
-    public ChannelFragment(LinkedHashMap<String, List<Game>> expandableListDetail) {
+    public ChannelFragment(Map<String, List<Game>> expandableListDetail) {
         this.expandableListDetail = expandableListDetail;
         this.expandableListTitle = new ArrayList<String>(expandableListDetail.keySet());
     }
@@ -49,10 +49,8 @@ public class ChannelFragment extends Fragment {
 
         expandableListAdapter = new CustomExpandableListAdapter(getActivity(), expandableListTitle, expandableListDetail, "Channel");
         expandableListView.setAdapter(expandableListAdapter);
-        expandableListView.expandGroup(0);
 
         expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
-
             @Override
             public void onGroupExpand(int groupPosition) {
                 if (lastExpandedPosition != -1 && groupPosition != lastExpandedPosition) {
@@ -61,9 +59,9 @@ public class ChannelFragment extends Fragment {
                 lastExpandedPosition = groupPosition;
             }
         });
+        expandableListView.expandGroup(0);
 
         expandableListView.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
-
             @Override
             public void onGroupCollapse(int groupPosition) {
 

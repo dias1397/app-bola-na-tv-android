@@ -1,9 +1,5 @@
 package com.diasjoao.bolanatv;
 
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
 import android.content.Context;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
@@ -13,18 +9,22 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
+import java.util.Calendar;
+import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+public class CustomExpandableListAdapterDate extends BaseExpandableListAdapter {
 
     private Context context;
-    private List<String> expandableListTitle;
-    private Map<String, List<Game>> expandableListDetail;
-    private String layoutType;
+    private List<Date> expandableListTitle;
+    private Map<Date, List<Game>> expandableListDetail;
 
-    public CustomExpandableListAdapter(Context context, List<String> expandableListTitle, Map<String, List<Game>> expandableListDetail, String layoutType) {
+    public CustomExpandableListAdapterDate(Context context, List<Date> expandableListTitle, Map<Date, List<Game>> expandableListDetail) {
         this.context = context;
         this.expandableListTitle = expandableListTitle;
         this.expandableListDetail = expandableListDetail;
-        this.layoutType = layoutType;
     }
 
     @Override
@@ -43,22 +43,15 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
         final String homeTeamString = (String) getChild(listPosition, expandedListPosition).getHomeTeam();
         final String awayTeamString = (String) getChild(listPosition, expandedListPosition).getAwayTeam();
         final String hoursString = (String) getChild(listPosition, expandedListPosition).getHour();
-        final String dateString = (String) getChild(listPosition, expandedListPosition).getDate();
 
         if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-            if (layoutType.equals("Competition")){
-                convertView = layoutInflater.inflate(R.layout.list_item2, null);
-            } else if (layoutType.equals("Channel")) {
-                convertView = layoutInflater.inflate(R.layout.list_item3, null);
-            }
+            convertView = layoutInflater.inflate(R.layout.list_item, null);
         }
 
-        if (layoutType.equals("Competition")) {
-            ImageView channel = (ImageView) convertView.findViewById(R.id.imageView);
+        ImageView channel = (ImageView) convertView.findViewById(R.id.imageView);
 
-            switch (getChild(listPosition, expandedListPosition).getChannel()) {
+        switch (getChild(listPosition, expandedListPosition).getChannel()) {
                 case "RTP 1":
                     channel.setImageResource(R.drawable.rtp1);
                     break;
@@ -121,11 +114,7 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
                     break;
                 default:
                     channel.setImageResource(R.drawable.nosignal);
-            }
         }
-
-        TextView date = (TextView) convertView.findViewById(R.id.date);
-        date.setText(dateString);
 
         TextView homeTeam = (TextView) convertView.findViewById(R.id.homeTeam);
         TextView awayTeam = (TextView) convertView.findViewById(R.id.awayTeam);
@@ -140,12 +129,11 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int listPosition) {
-        return this.expandableListDetail.get(this.expandableListTitle.get(listPosition))
-                .size();
+        return this.expandableListDetail.get(this.expandableListTitle.get(listPosition)).size();
     }
 
     @Override
-    public Object getGroup(int listPosition) {
+    public Date getGroup(int listPosition) {
         return this.expandableListTitle.get(listPosition);
     }
 
@@ -160,9 +148,10 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public View getGroupView(int listPosition, boolean isExpanded,
-                             View convertView, ViewGroup parent) {
-        String listTitle = (String) getGroup(listPosition);
+    public View getGroupView(int listPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(getGroup(listPosition));
+        String listTitle = context.getResources().getStringArray(R.array.weekdays)[calendar.get(Calendar.DAY_OF_WEEK)-1] + ", " + calendar.get(Calendar.DAY_OF_MONTH) + " de " + context.getResources().getStringArray(R.array.months)[calendar.get(Calendar.MONTH)];
         if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) this.context.
                     getSystemService(Context.LAYOUT_INFLATER_SERVICE);
