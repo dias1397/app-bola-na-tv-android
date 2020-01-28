@@ -41,4 +41,6 @@
     <string name="menu_comment">Enviar feedback</string>
     <string name="menu_version">Versão</string>
     <string name="menu_details">Detalhes</string>
+
+    <string name="version">1.0.0</string>
 </resources>
