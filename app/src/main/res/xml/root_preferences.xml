@@ -18,12 +18,23 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:key="first_preferencescreen">
 
-    <ListPreference
-        app:defaultValue="Data"
-        app:entries="@array/DefaultType"
-        app:entryValues="@array/DefaultType"
-        app:key="DefaultType"
-        app:title="Selecione o filtro inicial"
-        app:useSimpleSummaryProvider="true" />
+    <PreferenceCategory
+        android:title="Geral"
+        android:visibility="visible">
+
+        <ListPreference
+            android:defaultValue="Data"
+            android:entries="@array/DefaultType"
+            android:entryValues="@array/DefaultType"
+            android:icon="@drawable/ic_filter_list_black_24dp"
+            android:key="DefaultFilter"
+            android:summary="Selecione a categoria inicial"
+            android:title="Separador inicial" />
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="AutoExpand"
+            android:title="Opção Inicial Automática" />0
+
+    </PreferenceCategory>
 
 </PreferenceScreen>

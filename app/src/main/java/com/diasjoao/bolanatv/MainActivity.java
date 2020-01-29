@@ -7,7 +7,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -17,11 +19,15 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
-import android.widget.ProgressBar;
-import android.widget.Toast;
 
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -32,9 +38,10 @@ import java.util.TreeMap;
 
 public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawer;
-    private ProgressBar loading;
     private FrameLayout frame;
     private Toolbar toolbar;
+    private NavigationView navigationView;
+    private AdView mAdView;
 
     private static Map<Date, List<Game>> gamesPerDay = new TreeMap();
     private static Map<String, List<Game>> gamesPerCompetition = new TreeMap();
@@ -45,37 +52,68 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        loading = (ProgressBar)findViewById(R.id.loading);
-        frame = (FrameLayout)findViewById(R.id.fragment_container);
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
+        frame = (FrameLayout)findViewById(R.id.fragment_container);
+        drawer = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
         toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        Intent intent = getIntent();
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                Intent intent;
                 switch (menuItem.getItemId()) {
                     case R.id.nav_settings:
-                        Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
-                        intent.putExtra("games", getIntent().getSerializableExtra("games"));
-                        finish();
+                        intent = new Intent(MainActivity.this, SettingsActivity.class);
+                        if (getIntent().getSerializableExtra("games") != null) {
+                            intent.putExtra("games", getIntent().getSerializableExtra("games"));
+                            intent.putExtra("hasNetwork", getIntent().getBooleanExtra("hasNetwork", true));
+                            dumpOldVars();
+                        }
                         startActivity(intent);
                         break;
                     case R.id.nav_rate:
                         launchMarket();
                         break;
                     case R.id.nav_comment:
-                        Toast.makeText(getApplicationContext(), "Send Email", Toast.LENGTH_SHORT).show();
+                        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                        emailIntent.putExtra(Intent.EXTRA_EMAIL, getResources().getStringArray(R.array.developer_emails));
+                        emailIntent.setType("message/rfc822");
+                        startActivity(Intent.createChooser(emailIntent, "Selecione um provedor de email"));
                         break;
-                    case R.id.nav_details:
-                        Toast.makeText(getApplicationContext(), "Details", Toast.LENGTH_SHORT).show();
+                    case R.id.nav_about:
+                        intent = new Intent(MainActivity.this, DetailsActivity.class);
+                        if (getIntent().getSerializableExtra("games") != null) {
+                            intent.putExtra("games", getIntent().getSerializableExtra("games"));
+                            intent.putExtra("hasNetwork", getIntent().getBooleanExtra("hasNetwork", true));
+                            dumpOldVars();
+                        }
+                        startActivity(intent);
+                        break;
+                    case R.id.nav_privacy:
+                        intent = new Intent(MainActivity.this, PrivacyActivity.class);
+                        if (getIntent().getSerializableExtra("games") != null) {
+                            intent.putExtra("games", getIntent().getSerializableExtra("games"));
+                            intent.putExtra("hasNetwork", getIntent().getBooleanExtra("hasNetwork", true));
+                            dumpOldVars();
+                        }
+                        startActivity(intent);
                         break;
                 }
 
@@ -84,43 +122,58 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Intent intent = getIntent();
-        if (buildGamesperDay((ArrayList<Game>) intent.getSerializableExtra("games"))) {
-            final BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-            String type = prefs.getString("DefaultType", "Data");
+        if (intent.getBooleanExtra("hasNetwork", false)) {
+            if (buildGamesperDay((ArrayList<Game>) intent.getSerializableExtra("games"))) {
+                final BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                String type = prefs.getString("DefaultFilter", "Data");
 
-            if (type.equals("Data")) {
-                bottomNav.setSelectedItemId(R.id.nav_date);
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DateFragment(gamesPerDay)).commit();
-            } else if (type.equals("Competição")) {
-                bottomNav.setSelectedItemId(R.id.nav_competition);
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new CompetitionFragment(gamesPerCompetition)).commit();
-            } else if (type.equals("Canal")) {
-                bottomNav.setSelectedItemId(R.id.nav_channel);
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ChannelFragment(gamesPerChannel)).commit();
-            }
-
-            bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                    switch (menuItem.getItemId()) {
-                        case R.id.nav_date:
-                            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DateFragment(gamesPerDay)).commit();
-                            break;
-                        case R.id.nav_competition:
-                            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new CompetitionFragment(gamesPerCompetition)).commit();
-                            break;
-                        case R.id.nav_channel:
-                            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ChannelFragment(gamesPerChannel)).commit();
-                            break;
-                    }
-                    return true;
+                if (type.equals("Data")) {
+                    bottomNav.setSelectedItemId(R.id.nav_date);
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DateFragment(gamesPerDay)).commit();
+                } else if (type.equals("Competição")) {
+                    bottomNav.setSelectedItemId(R.id.nav_competition);
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new CompetitionFragment(gamesPerCompetition)).commit();
+                } else if (type.equals("Canal")) {
+                    bottomNav.setSelectedItemId(R.id.nav_channel);
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ChannelFragment(gamesPerChannel)).commit();
                 }
-            });
 
+                bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                        switch (menuItem.getItemId()) {
+                            case R.id.nav_date:
+                                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DateFragment(gamesPerDay)).commit();
+                                break;
+                            case R.id.nav_competition:
+                                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new CompetitionFragment(gamesPerCompetition)).commit();
+                                break;
+                            case R.id.nav_channel:
+                                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ChannelFragment(gamesPerChannel)).commit();
+                                break;
+                        }
+                        return true;
+                    }
+                });
+
+            } else {
+                System.out.println("ERROR");
+            }
         } else {
-            System.out.println("ERROR");
+            new AlertDialog.Builder(MainActivity.this)
+                    .setTitle("Sem conexão à Internet")
+                    .setMessage("Certifique-se de que está conectado à internet e tente novamente")
+                    .setPositiveButton("Tentar Novamente", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dumpOldVars();
+                            finish();
+                            startActivity(new Intent(MainActivity.this, SplashActivity.class));
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setCancelable(false)
+                    .show();
         }
     }
 
@@ -168,11 +221,24 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.item1:
+                dumpOldVars();
                 finish();
                 startActivity(new Intent(MainActivity.this, SplashActivity.class));
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public static void dumpOldVars() {
+        if (!gamesPerDay.isEmpty()) {
+            gamesPerDay.clear();
+        }
+        if (!gamesPerCompetition.isEmpty()) {
+            gamesPerCompetition.clear();
+        }
+        if (!gamesPerChannel.isEmpty()) {
+            gamesPerChannel.clear();
+        }
     }
 
     @Override

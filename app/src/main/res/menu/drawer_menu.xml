@@ -28,14 +28,13 @@
     <item android:title="Sobre">
         <menu>
             <item
-                android:id="@+id/nav_version"
-                android:icon="@drawable/ic_menu_version"
-                android:title="@string/menu_version"
-                android:contentDescription="@string/version"/>
+                android:id="@+id/nav_about"
+                android:icon="@drawable/ic_menu_info"
+                android:title="@string/menu_about"/>
             <item
-                android:id="@+id/nav_details"
-                android:icon="@drawable/ic_menu_details"
-                android:title="@string/menu_details" />
+                android:id="@+id/nav_privacy"
+                android:icon="@drawable/ic_menu_privacy"
+                android:title="@string/menu_privacy" />
         </menu>
     </item>
 

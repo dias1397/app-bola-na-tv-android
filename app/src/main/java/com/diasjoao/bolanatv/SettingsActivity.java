@@ -28,6 +28,7 @@ public class SettingsActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         intent.putExtra("games", getIntent().getSerializableExtra("games"));
+        intent.putExtra("hasNetwork", getIntent().getBooleanExtra("hasNetwork", true));
         finish();
         startActivityForResult(intent, 0);
         return true;
