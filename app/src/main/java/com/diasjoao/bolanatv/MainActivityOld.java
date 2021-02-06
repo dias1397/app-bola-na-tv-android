@@ -36,7 +36,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivityOld extends AppCompatActivity {
     private DrawerLayout drawer;
     private FrameLayout frame;
     private Toolbar toolbar;
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_mainold);
 
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent;
                 switch (menuItem.getItemId()) {
                     case R.id.nav_settings:
-                        intent = new Intent(MainActivity.this, SettingsActivity.class);
+                        intent = new Intent(MainActivityOld.this, SettingsActivity.class);
                         if (getIntent().getSerializableExtra("games") != null) {
                             intent.putExtra("games", getIntent().getSerializableExtra("games"));
                             intent.putExtra("hasNetwork", getIntent().getBooleanExtra("hasNetwork", true));
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(Intent.createChooser(emailIntent, "Selecione um provedor de email"));
                         break;
                     case R.id.nav_about:
-                        intent = new Intent(MainActivity.this, DetailsActivity.class);
+                        intent = new Intent(MainActivityOld.this, DetailsActivity.class);
                         if (getIntent().getSerializableExtra("games") != null) {
                             intent.putExtra("games", getIntent().getSerializableExtra("games"));
                             intent.putExtra("hasNetwork", getIntent().getBooleanExtra("hasNetwork", true));
@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.nav_privacy:
-                        intent = new Intent(MainActivity.this, PrivacyActivity.class);
+                        intent = new Intent(MainActivityOld.this, PrivacyActivity.class);
                         if (getIntent().getSerializableExtra("games") != null) {
                             intent.putExtra("games", getIntent().getSerializableExtra("games"));
                             intent.putExtra("hasNetwork", getIntent().getBooleanExtra("hasNetwork", true));
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
         if (intent.getBooleanExtra("hasNetwork", false)) {
             if (buildGamesperDay((ArrayList<Game>) intent.getSerializableExtra("games"))) {
                 final BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
-                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(MainActivityOld.this);
                 String type = prefs.getString("DefaultFilter", "Data");
 
                 if (type.equals("Data")) {
@@ -161,14 +161,14 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println("ERROR");
             }
         } else {
-            new AlertDialog.Builder(MainActivity.this)
+            new AlertDialog.Builder(MainActivityOld.this)
                     .setTitle("Sem conexão à Internet")
                     .setMessage("Certifique-se de que está conectado à internet e tente novamente")
                     .setPositiveButton("Tentar Novamente", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             dumpOldVars();
                             finish();
-                            startActivity(new Intent(MainActivity.this, SplashActivity.class));
+                            startActivity(new Intent(MainActivityOld.this, SplashActivity.class));
                         }
                     })
                     .setIcon(android.R.drawable.ic_dialog_alert)
@@ -223,7 +223,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.item1:
                 dumpOldVars();
                 finish();
-                startActivity(new Intent(MainActivity.this, SplashActivity.class));
+                startActivity(new Intent(MainActivityOld.this, SplashActivity.class));
                 break;
         }
         return super.onOptionsItemSelected(item);

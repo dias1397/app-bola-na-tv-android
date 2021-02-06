@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -42,7 +41,7 @@ public class SplashActivity extends AppCompatActivity {
         if (isNetworkConnected()) {
             new RetrieveGames().execute();
         } else {
-            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+            Intent intent = new Intent(SplashActivity.this, MainActivityOld.class);
             intent.putExtra("hasNetwork", false);
             finish();
             startActivity(intent);
@@ -98,7 +97,7 @@ public class SplashActivity extends AppCompatActivity {
         protected void onPostExecute(Boolean aBoolean) {
             super.onPostExecute(aBoolean);
 
-            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+            Intent intent = new Intent(SplashActivity.this, MainActivityOld.class);
             intent.putExtra("hasNetwork", true);
             intent.putExtra("games", games);
             finish();

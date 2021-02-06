@@ -16,23 +16,24 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.LoadingActivity"
-            android:label="Bola na Tv" >
+        <activity android:name=".activities.MainActivity"></activity>
+        <activity
+            android:name=".activities.LoadingActivity"
+            android:label="Bola na Tv">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter></activity>
+            </intent-filter>
+        </activity>
         <activity android:name=".PrivacyActivity" />
         <activity android:name=".DetailsActivity" />
-        <activity
-            android:name=".SettingsActivity"/>
+        <activity android:name=".SettingsActivity" />
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".MainActivityOld"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <meta-data

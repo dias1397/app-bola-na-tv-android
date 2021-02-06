@@ -38,7 +38,7 @@ public class PrivacyActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        Intent intent = new Intent(getApplicationContext(), MainActivityOld.class);
         intent.putExtra("games", getIntent().getSerializableExtra("games"));
         intent.putExtra("hasNetwork", getIntent().getBooleanExtra("hasNetwork", true));
         finish();
