@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/teams"
+        android:id="@+id/homeTeam"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="TextView"
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="@+id/teams"
+        app:layout_constraintEnd_toEndOf="@+id/homeTeam"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/teams" />
+        app:layout_constraintTop_toBottomOf="@+id/homeTeam" />
 </androidx.constraintlayout.widget.ConstraintLayout>

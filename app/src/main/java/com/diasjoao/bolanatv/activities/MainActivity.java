@@ -1,5 +1,7 @@
 package com.diasjoao.bolanatv.activities;
 
+import com.diasjoao.bolanatv.utils.DateUtils;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
@@ -11,7 +13,6 @@ import com.diasjoao.bolanatv.adapters.TabAdapter;
 import com.diasjoao.bolanatv.models.Game;
 import com.google.android.material.tabs.TabLayout;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -23,8 +24,6 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
-    private SimpleDateFormat sdfmt = new SimpleDateFormat("dd MMM");
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,10 +32,11 @@ public class MainActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.viewPager);
         tabLayout = findViewById(R.id.tabLayout);
 
-        Map<Date, List<Game>> games = new TreeMap<>((HashMap<Date, List<Game>>) getIntent().getSerializableExtra("param1"));
+        Map<Date, Map<String, List<Game>>> games = new TreeMap<>((HashMap<Date, HashMap<String, List<Game>>>) getIntent().getSerializableExtra("param1"));
+        //Map<Date, List<Game>> games = new TreeMap<>((HashMap<Date, List<Game>>) getIntent().getSerializableExtra("param1"));
 
         for (Date key : games.keySet()) {
-            tabLayout.addTab(tabLayout.newTab().setText(sdfmt.format(key)));
+            tabLayout.addTab(tabLayout.newTab().setText(DateUtils.simpleDateFormat2.format(key)));
         }
         tabAdapter = new TabAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, games);
 

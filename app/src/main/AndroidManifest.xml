@@ -31,10 +31,10 @@
         <activity android:name=".SettingsActivity" />
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".MainActivityOld"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"

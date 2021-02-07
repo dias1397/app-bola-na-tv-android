@@ -6,18 +6,19 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.diasjoao.bolanatv.R;
-import com.diasjoao.bolanatv.adapters.CustomAdapter;
+import com.diasjoao.bolanatv.adapters.MainRecyclerAdapter;
 import com.diasjoao.bolanatv.models.Game;
+import com.shuhart.stickyheader.StickyHeaderItemDecorator;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,7 +29,7 @@ public class GamesFragment extends Fragment {
     View view;
     RecyclerView recyclerView;
 
-    List<Game> games;
+    Map<String, List<Game>> games;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -41,26 +42,30 @@ public class GamesFragment extends Fragment {
      * @param param1 Parameter 1.
      * @return A new instance of fragment GamesFragment.
      */
-    public static GamesFragment newInstance(List<Game> param1) {
-        Log.i("New Instance", String.valueOf(param1.size()));
+    public static GamesFragment newInstance(Map<String, List<Game>> param1) {
         GamesFragment fragment = new GamesFragment();
+
         Bundle args = new Bundle();
         args.putSerializable(ARG_PARAM1, (Serializable) param1);
         fragment.setArguments(args);
+
         return fragment;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_games, container, false);
-        games = (ArrayList<Game>)getArguments().getSerializable(ARG_PARAM1);
-        Log.i("On Create Viewe", String.valueOf(games.size()));
+        games = (HashMap< String, List<Game>>)getArguments().getSerializable(ARG_PARAM1);
 
-        recyclerView = view.findViewById(R.id.recyclerView);
+        recyclerView = view.findViewById(R.id.sectionRecyclerView);
+        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        CustomAdapter customAdapter = new CustomAdapter(games);
-        recyclerView.setAdapter(customAdapter);
+        MainRecyclerAdapter mainRecyclerAdapter = new MainRecyclerAdapter(getActivity(), games);
+        recyclerView.setAdapter(mainRecyclerAdapter);
+
+        StickyHeaderItemDecorator decorator = new StickyHeaderItemDecorator(mainRecyclerAdapter);
+        decorator.attachToRecyclerView(recyclerView);
 
         return view;
     }

@@ -1,6 +1,5 @@
 package com.diasjoao.bolanatv.adapters;
 
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -16,9 +15,9 @@ import java.util.Map;
 
 public class TabAdapter extends FragmentStatePagerAdapter {
 
-    Map<Date, List<Game>> games;
+    Map<Date, Map<String, List<Game>>> games;
 
-    public TabAdapter(@NonNull FragmentManager fm, int behavior, Map<Date, List<Game>> games) {
+    public TabAdapter(@NonNull FragmentManager fm, int behavior, Map<Date, Map<String, List<Game>>> games) {
         super(fm, behavior);
         this.games = games;
     }
@@ -26,14 +25,12 @@ public class TabAdapter extends FragmentStatePagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        Log.i("Get Item", String.valueOf(position));
         Date key = (Date) games.keySet().toArray()[position];
         return GamesFragment.newInstance(games.get(key));
     }
 
     @Override
     public int getCount() {
-        Log.i("Get Count", String.valueOf(games.keySet().size()));
         return games.keySet().size();
     }
 }
