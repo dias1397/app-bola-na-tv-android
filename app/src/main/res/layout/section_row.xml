@@ -9,7 +9,7 @@
         android:id="@+id/sectionTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
+        android:background="@android:color/background_light"
         android:paddingStart="16dp"
         android:text="Time"
         android:textColor="@android:color/black"
