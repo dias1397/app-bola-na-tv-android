@@ -1,19 +1,13 @@
 package com.diasjoao.bolanatv.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.diasjoao.bolanatv.utils.DateUtils;
-
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.diasjoao.bolanatv.R;
 import com.diasjoao.bolanatv.models.Game;
+import com.diasjoao.bolanatv.utils.NetworkUtils;
+import com.diasjoao.bolanatv.utils.DateUtils;
 
-import android.content.Context;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -21,13 +15,17 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -35,28 +33,24 @@ import java.util.List;
 import java.util.Map;
 
 public class LoadingActivity extends AppCompatActivity {
-    private Button repetir;
-    private Animation animation;
-    private ImageView logo;
 
     private RequestQueue requestQueue;
-    private SimpleDateFormat sdfmt = new SimpleDateFormat("dd-MM-yy");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
 
-        logo = findViewById(R.id.logo);
-        repetir = findViewById(R.id.repetir);
+        ImageView logo = findViewById(R.id.logo);
+        Button repetir = findViewById(R.id.repetir);
         repetir.setVisibility(View.GONE);
 
-        animation = AnimationUtils.loadAnimation(LoadingActivity.this, R.anim.pulse);
+        Animation animation = AnimationUtils.loadAnimation(LoadingActivity.this, R.anim.pulse);
         logo.startAnimation(animation);
 
         requestQueue = Volley.newRequestQueue(this);
 
-        if (isNetworkConnected()) {
+        if (NetworkUtils.isNetworkConnected(this)) {
             jsonParse();
         } else {
             repetir.setVisibility(View.VISIBLE);
@@ -65,12 +59,6 @@ public class LoadingActivity extends AppCompatActivity {
                 startActivity(getIntent());
             });
         }
-
-    }
-
-    private boolean isNetworkConnected() {
-        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
     }
 
     private void jsonParse() {
@@ -92,7 +80,7 @@ public class LoadingActivity extends AppCompatActivity {
                         result.get(DateUtils.simpleDateFormat1.parse(jsonObject.getString("date"))).put(jsonObject.getString("time"), new ArrayList<>());
                     }
 
-                    result.get(sdfmt.parse(jsonObject.getString("date"))).get(jsonObject.getString("time")).add(
+                    result.get(DateUtils.simpleDateFormat1.parse(jsonObject.getString("date"))).get(jsonObject.getString("time")).add(
                         new Game(
                             jsonObject.getString("date"),
                             jsonObject.getString("time"),
@@ -102,8 +90,6 @@ public class LoadingActivity extends AppCompatActivity {
                             jsonObject.getString("competition").substring(0, jsonObject.getString("competition").length() - 1)
                         )
                     );
-
-
                 }
 
                 Intent intent = new Intent(this, MainActivity.class);
@@ -113,7 +99,6 @@ public class LoadingActivity extends AppCompatActivity {
             } catch (JSONException | ParseException e) {
                 e.printStackTrace();
             }
-
         }, Throwable::printStackTrace);
 
         requestQueue.add(request);

@@ -20,6 +20,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
+import com.diasjoao.bolanatv.activities.LoadingActivity;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
@@ -63,7 +64,7 @@ public class MainActivityOld extends AppCompatActivity {
 
         frame = (FrameLayout)findViewById(R.id.fragment_container);
         drawer = findViewById(R.id.drawer_layout);
-        navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.navigation_view);
         toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -79,7 +80,7 @@ public class MainActivityOld extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 Intent intent;
                 switch (menuItem.getItemId()) {
-                    case R.id.nav_settings:
+                    /*case R.id.nav_settings:
                         intent = new Intent(MainActivityOld.this, SettingsActivity.class);
                         if (getIntent().getSerializableExtra("games") != null) {
                             intent.putExtra("games", getIntent().getSerializableExtra("games"));
@@ -87,7 +88,7 @@ public class MainActivityOld extends AppCompatActivity {
                             dumpOldVars();
                         }
                         startActivity(intent);
-                        break;
+                        break;*/
                     case R.id.nav_rate:
                         launchMarket();
                         break;
@@ -223,7 +224,7 @@ public class MainActivityOld extends AppCompatActivity {
             case R.id.item1:
                 dumpOldVars();
                 finish();
-                startActivity(new Intent(MainActivityOld.this, SplashActivity.class));
+                startActivity(new Intent(MainActivityOld.this, LoadingActivity.class));
                 break;
         }
         return super.onOptionsItemSelected(item);
