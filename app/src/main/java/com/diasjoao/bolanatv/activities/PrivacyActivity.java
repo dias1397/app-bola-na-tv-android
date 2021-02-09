@@ -1,4 +1,4 @@
-package com.diasjoao.bolanatv;
+package com.diasjoao.bolanatv.activities;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.diasjoao.bolanatv.R;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
@@ -38,7 +39,7 @@ public class PrivacyActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent = new Intent(getApplicationContext(), MainActivityOld.class);
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         intent.putExtra("games", getIntent().getSerializableExtra("games"));
         intent.putExtra("hasNetwork", getIntent().getBooleanExtra("hasNetwork", true));
         finish();

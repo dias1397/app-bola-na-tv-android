@@ -54,7 +54,7 @@ public class MainRecyclerAdapter extends StickyAdapter<MainRecyclerAdapter.ViewH
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         // Create a new view, which defines the UI of the list item
         View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.section_row, viewGroup, false);
+                .inflate(R.layout.row_section, viewGroup, false);
 
         return new ViewHolder(view);
     }

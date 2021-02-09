@@ -1,12 +1,7 @@
 package com.diasjoao.bolanatv.activities;
 
-import com.diasjoao.bolanatv.DetailsActivity;
-import com.diasjoao.bolanatv.MainActivityOld;
-import com.diasjoao.bolanatv.PrivacyActivity;
-import com.diasjoao.bolanatv.SettingsActivity;
 import com.diasjoao.bolanatv.utils.DateUtils;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -17,7 +12,6 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 
 import com.diasjoao.bolanatv.R;
 import com.diasjoao.bolanatv.adapters.TabAdapter;

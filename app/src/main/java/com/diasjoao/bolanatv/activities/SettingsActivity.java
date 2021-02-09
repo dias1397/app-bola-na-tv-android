@@ -1,4 +1,4 @@
-package com.diasjoao.bolanatv;
+package com.diasjoao.bolanatv.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,9 @@ import android.view.MenuItem;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceFragmentCompat;
+
+import com.diasjoao.bolanatv.R;
+import com.diasjoao.bolanatv.activities.MainActivity;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -26,7 +29,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent = new Intent(getApplicationContext(), MainActivityOld.class);
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         intent.putExtra("games", getIntent().getSerializableExtra("games"));
         intent.putExtra("hasNetwork", getIntent().getBooleanExtra("hasNetwork", true));
         finish();

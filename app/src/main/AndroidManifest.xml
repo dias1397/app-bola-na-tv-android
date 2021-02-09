@@ -16,27 +16,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.MainActivity">
 
-        </activity>
-        <activity
-            android:name=".activities.LoadingActivity"
-            android:label="Bola na Tv">
-        </activity>
-        <activity android:name=".PrivacyActivity" />
-        <activity android:name=".DetailsActivity" />
-        <activity android:name=".SettingsActivity" />
-        <activity
-            android:name=".SplashActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".activities.LoadingActivity" android:label="Bola na Tv">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter></activity>
-        <activity
-            android:name=".MainActivityOld"
-            android:theme="@style/AppTheme.NoActionBar" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activities.MainActivity"></activity>
+        <activity android:name=".activities.PrivacyActivity" />
+        <activity android:name=".activities.SettingsActivity" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
