@@ -23,14 +23,14 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+        /*MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {
             }
         });
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        mAdView.loadAd(adRequest);*/
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -41,8 +41,8 @@ public class DetailsActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        intent.putExtra("games", getIntent().getSerializableExtra("games"));
-        intent.putExtra("hasNetwork", getIntent().getBooleanExtra("hasNetwork", true));
+        /*intent.putExtra("games", getIntent().getSerializableExtra("games"));
+        intent.putExtra("hasNetwork", getIntent().getBooleanExtra("hasNetwork", true));*/
         finish();
         startActivityForResult(intent, 0);
         return true;

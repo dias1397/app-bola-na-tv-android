@@ -17,15 +17,20 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
 
-        <activity android:name=".activities.LoadingActivity" android:label="Bola na Tv">
+        <activity android:name=".activities.LoadingActivity"
+                  android:label="Bola na Tv">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.MainActivity"></activity>
-        <activity android:name=".activities.PrivacyActivity" />
+        <activity android:name=".activities.MainActivity" />
         <activity android:name=".activities.SettingsActivity" />
+
+        <activity android:name=".activities.DetailsActivity"
+                  android:theme="@style/AppThemeBar"/>
+        <activity android:name=".activities.PrivacyActivity"
+                  android:theme="@style/AppThemeBar" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
