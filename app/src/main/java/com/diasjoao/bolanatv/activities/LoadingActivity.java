@@ -94,8 +94,8 @@ public class LoadingActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(this, MainActivity.class);
                 intent.putExtra("param1", (Serializable) result);
-                finish();
                 startActivity(intent);
+                finish();
             } catch (JSONException | ParseException e) {
                 e.printStackTrace();
             }
