@@ -35,7 +35,7 @@
             app:layout_constraintTop_toBottomOf="@+id/toolbar"
             app:tabGravity="fill"
             app:tabMode="scrollable"
-            app:tabTextColor="@color/secondaryDarkColor"></com.google.android.material.tabs.TabLayout>
+            app:tabTextColor="@color/secondaryDarkColor" />
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewPager"
@@ -57,10 +57,10 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             app:adSize="BANNER"
-            app:adUnitId="ca-app-pub-5312948205233682/6950007186"
+            app:adUnitId="${ADMOB_BANNER_MAIN}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"></com.google.android.gms.ads.AdView>
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

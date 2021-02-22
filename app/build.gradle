@@ -1,5 +1,9 @@
 apply plugin: 'com.android.application'
 
+def appPropertiesFile = rootProject.file("app/app.properties")
+def appProperties = new Properties()
+appProperties.load(new FileInputStream(appPropertiesFile))
+
 android {
     compileSdkVersion 29
     defaultConfig {
@@ -9,6 +13,13 @@ android {
         versionCode 2
         versionName "2.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        manifestPlaceholders = [ads_application_id: appProperties['ADMOB_APPLICATION_ID']]
+
+        buildConfigField("String", "ADMOB_BANNER_DETAILS", appProperties['ADMOB_BANNER_DETAILS'])
+        buildConfigField("String", "ADMOB_BANNER_MAIN", appProperties['ADMOB_BANNER_MAIN'])
+        buildConfigField("String", "ADMOB_BANNER_PRIVACY", appProperties['ADMOB_BANNER_PRIVACY'])
+        buildConfigField("String", "API_URL_BOLA_NA_TV", appProperties['API_URL_BOLA_NA_TV'])
     }
     buildTypes {
         release {
@@ -26,7 +37,6 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.google.android.gms:play-services-ads:19.7.0'
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    //implementation 'com.android.support:design:28.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation("com.squareup.okhttp3:okhttp:4.3.0")
@@ -40,7 +50,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'com.shuhart.stickyheader:stickyheader:1.0.6'
     implementation files('libs/jsoup-1.12.1.jar')
-
-
     implementation 'com.android.volley:volley:1.1.1'
 }

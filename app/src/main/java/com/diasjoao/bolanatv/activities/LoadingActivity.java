@@ -1,5 +1,6 @@
 package com.diasjoao.bolanatv.activities;
 
+import com.diasjoao.bolanatv.BuildConfig;
 import com.diasjoao.bolanatv.R;
 import com.diasjoao.bolanatv.models.Game;
 import com.diasjoao.bolanatv.utils.NetworkUtils;
@@ -24,7 +25,6 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.Serializable;
 import java.text.ParseException;
@@ -37,6 +37,7 @@ import java.util.Map;
 public class LoadingActivity extends AppCompatActivity {
 
     private RequestQueue requestQueue;
+    private final String apiUrl = BuildConfig.API_URL_BOLA_NA_TV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,9 +75,8 @@ public class LoadingActivity extends AppCompatActivity {
 
     private void jsonParse() {
         Map<Date, Map<String, List<Game>>> result = new HashMap<>();
-        String url = "https://bola-na-tv-api.vercel.app/";
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, response -> {
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, apiUrl, null, response -> {
             try {
                 JSONArray jsonArray = response.getJSONArray("games");
 
