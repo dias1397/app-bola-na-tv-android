@@ -11,6 +11,6 @@ Android application that shows information about football match schedules on Por
 
 ## Screenshots
 [<img src="assets/screenshots/Shot1.png" width=160>](assets/screenshots/Shot1.png)
-[<img src="assets/screenshots/Shot2.png" width=160>](assets/screenshots/Shot2.jpg)
-[<img src="assets/screenshots/Shot3.png" width=160>](assets/screenshots/Shot3.jpg)
-[<img src="assets/screenshots/Shot4.png" width=160>](assets/screenshots/Shot4.jpg)
+[<img src="assets/screenshots/Shot2.png" width=160>](assets/screenshots/Shot2.png)
+[<img src="assets/screenshots/Shot3.png" width=160>](assets/screenshots/Shot3.png)
+[<img src="assets/screenshots/Shot4.png" width=160>](assets/screenshots/Shot4.png)
