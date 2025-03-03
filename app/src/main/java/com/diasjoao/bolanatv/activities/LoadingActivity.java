@@ -37,12 +37,14 @@ import java.util.Map;
 public class LoadingActivity extends AppCompatActivity {
 
     private RequestQueue requestQueue;
-    private final String apiUrl = BuildConfig.API_URL_BOLA_NA_TV;
+    private String apiUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
+
+        apiUrl = getString(R.string.api_url_bola_na_tv);
 
         TextView retryText = findViewById(R.id.retryText);
         retryText.setVisibility(View.GONE);
