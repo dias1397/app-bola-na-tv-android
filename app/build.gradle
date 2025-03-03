@@ -5,11 +5,12 @@ def appProperties = new Properties()
 appProperties.load(new FileInputStream(appPropertiesFile))
 
 android {
+    namespace 'com.diasjoao.bolanatv'
     defaultConfig {
         applicationId "com.diasjoao.bolanatv"
-        minSdkVersion 21
-        compileSdkVersion 34
-        targetSdkVersion 34
+        compileSdk 35
+        minSdkVersion 26
+        targetSdkVersion 35
         versionCode 3
         versionName "3.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -28,28 +29,31 @@ android {
         }
     }
     compileOptions {
-        targetCompatibility = 1.8
-        sourceCompatibility = 1.8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
-    namespace 'com.diasjoao.bolanatv'
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.google.android.gms:play-services-ads:22.4.0'
+    implementation files('libs/jsoup-1.12.1.jar')
+
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation("com.squareup.okhttp3:okhttp:4.3.0")
-    implementation 'com.google.android.material:material:1.10.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    implementation 'androidx.preference:preference:1.2.1'
     implementation 'androidx.navigation:navigation-fragment:2.7.4'
     implementation 'androidx.navigation:navigation-ui:2.7.4'
-    testImplementation 'junit:junit:4.13.2'
+    implementation 'androidx.preference:preference:1.2.1'
+
+    implementation 'com.android.volley:volley:1.2.1'
+    implementation 'com.github.shuhart:stickyheader:1.1.0'
+    implementation 'com.google.android.gms:play-services-ads:22.4.0'
+    implementation 'com.google.android.material:material:1.10.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.3.0'
+
     androidTestImplementation 'androidx.test:runner:1.5.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-    implementation 'com.github.shuhart:stickyheader:1.1.0'
-    implementation files('libs/jsoup-1.12.1.jar')
-    implementation 'com.android.volley:volley:1.2.1'
+
+    testImplementation 'junit:junit:4.13.2'
 }
