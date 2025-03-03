@@ -1,4 +1,4 @@
-package com.diasjoao.bolanatv.adapters;
+package com.diasjoao.bolanatv.ui.adapter;
 
 
 import androidx.annotation.NonNull;
@@ -6,8 +6,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import com.diasjoao.bolanatv.fragments.GamesFragment;
-import com.diasjoao.bolanatv.models.Game;
+import com.diasjoao.bolanatv.ui.fragment.GamesFragment;
+import com.diasjoao.bolanatv.model.Game;
 
 import java.util.Date;
 import java.util.List;

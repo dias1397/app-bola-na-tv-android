@@ -1,4 +1,4 @@
-package com.diasjoao.bolanatv.fragments;
+package com.diasjoao.bolanatv.ui.fragment;
 
 import android.os.Bundle;
 
@@ -11,8 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.diasjoao.bolanatv.R;
-import com.diasjoao.bolanatv.adapters.MainRecyclerAdapter;
-import com.diasjoao.bolanatv.models.Game;
+import com.diasjoao.bolanatv.ui.adapter.MainRecyclerAdapter;
+import com.diasjoao.bolanatv.model.Game;
 import com.shuhart.stickyheader.StickyHeaderItemDecorator;
 
 import java.io.Serializable;

@@ -1,4 +1,4 @@
-package com.diasjoao.bolanatv.activities;
+package com.diasjoao.bolanatv.ui.activity;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;

@@ -1,4 +1,4 @@
-package com.diasjoao.bolanatv.adapters;
+package com.diasjoao.bolanatv.ui.adapter;
 
 
 import android.content.Context;
@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.diasjoao.bolanatv.R;
-import com.diasjoao.bolanatv.models.Game;
+import com.diasjoao.bolanatv.model.Game;
 import com.shuhart.stickyheader.StickyAdapter;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.diasjoao.bolanatv.activities;
+package com.diasjoao.bolanatv.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceFragmentCompat;
 
 import com.diasjoao.bolanatv.R;
-import com.diasjoao.bolanatv.activities.MainActivity;
 
 public class SettingsActivity extends AppCompatActivity {
 

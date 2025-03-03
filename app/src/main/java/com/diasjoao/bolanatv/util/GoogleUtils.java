@@ -1,4 +1,4 @@
-package com.diasjoao.bolanatv.utils;
+package com.diasjoao.bolanatv.util;
 
 import android.content.ActivityNotFoundException;
 import android.content.Context;

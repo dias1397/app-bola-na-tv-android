@@ -18,7 +18,7 @@
         android:usesCleartextTraffic="true">
 
         <activity
-            android:name=".activities.LoadingActivity"
+            android:name=".ui.activity.LoadingActivity"
             android:label="Bola na Tv"
             android:exported="true">
             <intent-filter>
@@ -26,12 +26,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.MainActivity" />
-        <activity android:name=".activities.SettingsActivity" />
+        <activity android:name=".ui.activity.MainActivity" />
+        <activity android:name=".ui.activity.SettingsActivity" />
 
-        <activity android:name=".activities.DetailsActivity"
+        <activity android:name=".ui.activity.DetailsActivity"
                   android:theme="@style/AppThemeBar"/>
-        <activity android:name=".activities.PrivacyActivity"
+        <activity android:name=".ui.activity.PrivacyActivity"
                   android:theme="@style/AppThemeBar" />
 
         <meta-data

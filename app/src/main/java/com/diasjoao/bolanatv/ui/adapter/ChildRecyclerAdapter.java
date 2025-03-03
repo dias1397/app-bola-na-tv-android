@@ -1,4 +1,4 @@
-package com.diasjoao.bolanatv.adapters;
+package com.diasjoao.bolanatv.ui.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.diasjoao.bolanatv.R;
-import com.diasjoao.bolanatv.models.Game;
+import com.diasjoao.bolanatv.model.Game;
 
 import java.util.Calendar;
 import java.util.List;

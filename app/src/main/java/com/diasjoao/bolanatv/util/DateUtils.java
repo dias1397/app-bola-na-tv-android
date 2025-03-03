@@ -1,4 +1,4 @@
-package com.diasjoao.bolanatv.utils;
+package com.diasjoao.bolanatv.util;
 
 import java.text.SimpleDateFormat;
 

@@ -1,4 +1,4 @@
-package com.diasjoao.bolanatv.models;
+package com.diasjoao.bolanatv.model;
 
 import java.io.Serializable;
 import java.util.Objects;

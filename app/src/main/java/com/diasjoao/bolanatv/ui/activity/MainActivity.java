@@ -1,6 +1,6 @@
-package com.diasjoao.bolanatv.activities;
+package com.diasjoao.bolanatv.ui.activity;
 
-import com.diasjoao.bolanatv.utils.DateUtils;
+import com.diasjoao.bolanatv.util.DateUtils;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,9 +14,9 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.diasjoao.bolanatv.R;
-import com.diasjoao.bolanatv.adapters.TabAdapter;
-import com.diasjoao.bolanatv.models.Game;
-import com.diasjoao.bolanatv.utils.GoogleUtils;
+import com.diasjoao.bolanatv.ui.adapter.TabAdapter;
+import com.diasjoao.bolanatv.model.Game;
+import com.diasjoao.bolanatv.util.GoogleUtils;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;

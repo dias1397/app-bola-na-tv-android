@@ -1,10 +1,9 @@
-package com.diasjoao.bolanatv.activities;
+package com.diasjoao.bolanatv.ui.activity;
 
-import com.diasjoao.bolanatv.BuildConfig;
 import com.diasjoao.bolanatv.R;
-import com.diasjoao.bolanatv.models.Game;
-import com.diasjoao.bolanatv.utils.NetworkUtils;
-import com.diasjoao.bolanatv.utils.DateUtils;
+import com.diasjoao.bolanatv.model.Game;
+import com.diasjoao.bolanatv.util.NetworkUtils;
+import com.diasjoao.bolanatv.util.DateUtils;
 
 import androidx.appcompat.app.AppCompatActivity;
 
