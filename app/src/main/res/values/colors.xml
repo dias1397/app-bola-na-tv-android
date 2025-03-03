@@ -1,27 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Primary Color -->
-    <color name="colorPrimary">#43a047</color>  <!-- Dark blue for brand consistency -->
-    <color name="colorPrimaryVariant">#00701a</color>  <!-- Darker variant of primary -->
+    <!-- Primary brand colors -->
+    <color name="colorPrimary">#4CAF50</color>
+    <color name="colorPrimaryVariant">#388E3C</color>
+    <color name="colorSecondary">#FF9800</color>
+    <color name="colorSecondaryVariant">#F57C00</color>
 
-    <!-- Secondary Color -->
-    <color name="colorSecondary">#455a64</color>  <!-- Bright orange for visibility -->
-    <color name="colorSecondaryVariant">#1c313a</color>  <!-- Darker variant of secondary -->
+    <!-- Background, Surface, and Error colors -->
+    <color name="colorBackground">#FFFFFF</color>
+    <color name="colorSurface">#F5F5F5</color>
+    <color name="colorError">#D32F2F</color>
 
-    <!-- Background and surface colors -->
-    <color name="colorBackground">#F7F9FC</color>  <!-- Light gray for a clean look -->
-    <color name="colorSurface">#FFFFFF</color>  <!-- White surface -->
-    <color name="colorError">#B00020</color>  <!-- Red for errors -->
-
-    <!-- Text and icons on primary and secondary -->
-    <color name="colorOnPrimary">#FFFFFF</color>  <!-- White text on primary -->
-    <color name="colorOnSecondary">#000000</color>  <!-- Dark blue text on secondary -->
-    <color name="colorOnBackground">#00701a</color>  <!-- Dark blue text on background -->
-    <color name="colorOnSurface">#00701a</color>  <!-- Dark blue text on surface -->
+    <!-- Text and icon colors -->
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="colorOnSecondary">#000000</color>
+    <color name="colorOnSurface">#212121</color>
 
     <!-- Error text color -->
-    <color name="colorOnError">#FFFFFF</color>  <!-- White text on error -->
-
+    <color name="colorOnError">#FFFFFF</color>
     <color name="rowPrimary">#FFFFFF</color>
     <color name="rowAlternate">#F1F1F1</color>
 
