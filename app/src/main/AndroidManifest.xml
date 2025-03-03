@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
+        android:theme="@style/AppThemeNew"
         android:usesCleartextTraffic="true">
 
         <activity
@@ -35,12 +35,10 @@
 
         <activity
             android:name=".ui.activity.DetailsActivity"
-            android:exported="false"
-            android:theme="@style/AppThemeBar" />
+            android:exported="false" />
         <activity
             android:name=".ui.activity.PrivacyActivity"
-            android:exported="false"
-            android:theme="@style/AppThemeBar" />
+            android:exported="false" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"

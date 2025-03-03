@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Color -->
+    <color name="colorPrimary">#005DAA</color>  <!-- Dark blue for brand consistency -->
+    <color name="colorPrimaryVariant">#004DAA</color>  <!-- Darker variant of primary -->
+
+    <!-- Secondary Color -->
+    <color name="colorSecondary">#FF8C00</color>  <!-- Bright orange for visibility -->
+    <color name="colorSecondaryVariant">#CC5E25</color>  <!-- Darker variant of secondary -->
+
+    <!-- Background and surface colors -->
+    <color name="colorBackground">#121212</color>  <!-- Dark gray background -->
+    <color name="colorSurface">#1E1E1E</color>  <!-- Darker surface color -->
+
+    <!-- Text and icons in dark mode -->
+    <color name="colorOnPrimary">#FFFFFF</color>  <!-- White text on primary -->
+    <color name="colorOnSecondary">#FFFFFF</color>  <!-- White text on secondary -->
+    <color name="colorOnBackground">#E0E0E0</color>  <!-- Light gray for better readability -->
+    <color name="colorOnSurface">#E0E0E0</color>  <!-- Light gray text on surfaces -->
+
+    <!-- Error text color -->
+    <color name="colorOnError">#FFFFFF</color>  <!-- White text on error -->
+
+    <color name="rowPrimary">#1E1E1E</color>
+    <color name="rowAlternate">#121212</color>
+</resources>
