@@ -11,14 +11,16 @@ public class Game implements Serializable {
     private String away;
     private String channel;
     private String competition;
+    private boolean isLive;
 
-    public Game(String date, String time, String home, String away, String channel, String competition) {
+    public Game(String date, String time, String home, String away, String channel, String competition, boolean isLive) {
         this.date = date;
         this.time = time;
         this.home = home;
         this.away = away;
         this.channel = channel;
         this.competition = competition;
+        this.isLive = isLive;
     }
 
     public String getDate() {
@@ -67,6 +69,14 @@ public class Game implements Serializable {
 
     public void setCompetition(String competition) {
         this.competition = competition;
+    }
+
+    public boolean isLive() {
+        return isLive;
+    }
+
+    public void setLive(boolean live) {
+        isLive = live;
     }
 
     @Override

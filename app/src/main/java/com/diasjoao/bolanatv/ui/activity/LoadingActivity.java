@@ -100,13 +100,14 @@ public class LoadingActivity extends AppCompatActivity {
 
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    Date gameDate = DateUtils.simpleDateFormat1.parse(jsonObject.getString("date"));
 
-                    if (!result.containsKey(DateUtils.simpleDateFormat1.parse(jsonObject.getString("date")))) {
-                        result.put(DateUtils.simpleDateFormat1.parse(jsonObject.getString("date")), new HashMap<>());
+                    if (!result.containsKey(gameDate)) {
+                        result.put(gameDate, new HashMap<>());
                     }
 
-                    if (!result.get(DateUtils.simpleDateFormat1.parse(jsonObject.getString("date"))).containsKey(jsonObject.getString("time"))) {
-                        result.get(DateUtils.simpleDateFormat1.parse(jsonObject.getString("date"))).put(jsonObject.getString("time"), new ArrayList<>());
+                    if (!result.get(gameDate).containsKey(jsonObject.getString("time"))) {
+                        result.get(gameDate).put(jsonObject.getString("time"), new ArrayList<>());
                     }
 
                     result.get(DateUtils.simpleDateFormat1.parse(jsonObject.getString("date"))).get(jsonObject.getString("time")).add(
@@ -116,7 +117,8 @@ public class LoadingActivity extends AppCompatActivity {
                                     jsonObject.getString("homeTeam"),
                                     jsonObject.getString("awayTeam"),
                                     jsonObject.getString("channel"),
-                                    jsonObject.getString("competition").substring(0, jsonObject.getString("competition").length() - 1)
+                                    jsonObject.getString("competition").substring(0, jsonObject.getString("competition").length() - 1),
+                                    DateUtils.dateIsInThePast(gameDate, jsonObject.getString("time"))
                             )
                     );
                 }
