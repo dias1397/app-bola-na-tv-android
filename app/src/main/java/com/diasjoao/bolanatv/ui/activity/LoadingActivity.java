@@ -1,29 +1,27 @@
 package com.diasjoao.bolanatv.ui.activity;
 
-import com.diasjoao.bolanatv.R;
-import com.diasjoao.bolanatv.model.Game;
-import com.diasjoao.bolanatv.util.NetworkUtils;
-import com.diasjoao.bolanatv.util.DateUtils;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.diasjoao.bolanatv.R;
+import com.diasjoao.bolanatv.model.Game;
+import com.diasjoao.bolanatv.util.NetworkUtils;
+import com.diasjoao.bolanatv.util.DateUtils;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textview.MaterialTextView;
 
 import java.io.Serializable;
 import java.text.ParseException;
@@ -33,48 +31,67 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class LoadingActivity extends AppCompatActivity {
 
-    private RequestQueue requestQueue;
+    private ImageView logoImageView;
+    private MaterialButton retryButton;
+    private MaterialTextView statusTextView;
+
     private String apiUrl;
+    private RequestQueue requestQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
 
-        apiUrl = getString(R.string.api_url_bola_na_tv);
+        initializeViews();
+        setupUI();
+        loadGamesContent();
+    }
 
-        TextView retryText = findViewById(R.id.retryText);
-        retryText.setVisibility(View.GONE);
-        Button retry = findViewById(R.id.retry);
-        retry.setVisibility(View.GONE);
+    private void initializeViews() {
+        logoImageView = findViewById(R.id.logo_imageView);
+        retryButton = findViewById(R.id.retry_button);
+        statusTextView = findViewById(R.id.status_text);
+    }
 
-        ImageView logo = findViewById(R.id.logo);
-        Animation animation = AnimationUtils.loadAnimation(LoadingActivity.this, R.anim.pulse);
-        logo.startAnimation(animation);
+    private void setupUI() {
+        EdgeToEdge.enable(this);
 
-        TextView loadingText = findViewById(R.id.loading);
-        loadingText.setVisibility(View.VISIBLE);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
 
+        getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryVariant, null));
+
+        logoImageView.startAnimation(AnimationUtils.loadAnimation(LoadingActivity.this, R.anim.pulse));
+        retryButton.setOnClickListener(view -> {
+            finish();
+            startActivity(getIntent());
+        });
+    }
+
+    private void loadGamesContent() {
         requestQueue = Volley.newRequestQueue(this);
 
         if (NetworkUtils.isNetworkConnected(this)) {
-            jsonParse();
+            fetchGamesData();
         } else {
-            logo.clearAnimation();
-            loadingText.setVisibility(View.GONE);
-
-            retryText.setVisibility(View.VISIBLE);
-            retry.setVisibility(View.VISIBLE);
-            retry.setOnClickListener(view -> {
-                finish();
-                startActivity(getIntent());
-            });
+            logoImageView.clearAnimation();
+            statusTextView.setText(getString(R.string.noConnection));
+            retryButton.setVisibility(View.VISIBLE);
         }
     }
 
-    private void jsonParse() {
+    private void fetchGamesData() {
+        apiUrl = getString(R.string.api_url_bola_na_tv);
         Map<Date, Map<String, List<Game>>> result = new HashMap<>();
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, apiUrl, null, response -> {
@@ -93,14 +110,14 @@ public class LoadingActivity extends AppCompatActivity {
                     }
 
                     result.get(DateUtils.simpleDateFormat1.parse(jsonObject.getString("date"))).get(jsonObject.getString("time")).add(
-                        new Game(
-                            jsonObject.getString("date"),
-                            jsonObject.getString("time"),
-                            jsonObject.getString("homeTeam"),
-                            jsonObject.getString("awayTeam"),
-                            jsonObject.getString("channel"),
-                            jsonObject.getString("competition").substring(0, jsonObject.getString("competition").length() - 1)
-                        )
+                            new Game(
+                                    jsonObject.getString("date"),
+                                    jsonObject.getString("time"),
+                                    jsonObject.getString("homeTeam"),
+                                    jsonObject.getString("awayTeam"),
+                                    jsonObject.getString("channel"),
+                                    jsonObject.getString("competition").substring(0, jsonObject.getString("competition").length() - 1)
+                            )
                     );
                 }
 

@@ -8,7 +8,7 @@
     </string-array>
 
     <string name="logo">Logo</string>
-    <string name="NoConnection">Sem conexão\nTentar novamente</string>
+    <string name="noConnection">Sem conexão</string>
     <string name="loading">Carregando…</string>
 
     <string name="nav_header_title">BOLA NA TV</string>
@@ -62,6 +62,7 @@
     <string name="competition">Competition</string>
     <string name="away_team">Away Team</string>
     <string name="home_team">Home Team</string>
+    <string name="retry">Tentar novamente</string>
 
 
 </resources>
