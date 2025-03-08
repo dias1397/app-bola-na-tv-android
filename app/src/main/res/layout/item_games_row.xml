@@ -12,7 +12,7 @@
         android:layout_marginTop="8dp"
         android:text="@string/competition"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
-        app:layout_constraintEnd_toEndOf="@+id/teamsLayout"
+        app:layout_constraintEnd_toStartOf="@+id/notification"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
