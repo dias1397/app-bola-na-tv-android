@@ -26,6 +26,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -118,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadGamesContent() {
         if (getIntent().getSerializableExtra("param1") != null) {
-            gamesPerDay = (Map<Date, Map<String, List<Game>>>) getIntent().getSerializableExtra("param1");
+            gamesPerDay = new TreeMap<>((HashMap<Date, HashMap<String, List<Game>>>) getIntent().getSerializableExtra("param1"));
 
             for (Date key : gamesPerDay.keySet()) {
                 tabLayout.addTab(tabLayout.newTab().setText(DateUtils.simpleDateFormat2.format(key)));
