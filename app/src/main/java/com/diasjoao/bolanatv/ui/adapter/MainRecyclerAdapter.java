@@ -30,8 +30,8 @@ public class MainRecyclerAdapter extends StickyAdapter<MainRecyclerAdapter.ViewH
         public ViewHolder(View view) {
             super(view);
 
-            sectionTitleTextView = (TextView) view.findViewById(R.id.sectionTitle);
-            sectionRecyclerView = (RecyclerView) view.findViewById(R.id.sectionRecyclerView);
+            sectionTitleTextView = (TextView) view.findViewById(R.id.timeTextView);
+            sectionRecyclerView = (RecyclerView) view.findViewById(R.id.gamesRecyclerView);
         }
     }
 
@@ -54,7 +54,7 @@ public class MainRecyclerAdapter extends StickyAdapter<MainRecyclerAdapter.ViewH
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         // Create a new view, which defines the UI of the list item
         View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.row_section, viewGroup, false);
+                .inflate(R.layout.item_games, viewGroup, false);
 
         return new ViewHolder(view);
     }

@@ -31,10 +31,10 @@ public class ChildRecyclerAdapter extends RecyclerView.Adapter<ChildRecyclerAdap
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            homeTeam = (TextView) itemView.findViewById(R.id.homeTeam);
-            awayTeam = (TextView) itemView.findViewById(R.id.awayTeam);
-            competition = (TextView) itemView.findViewById(R.id.competition);
-            channel = (TextView) itemView.findViewById(R.id.channel);
+            homeTeam = (TextView) itemView.findViewById(R.id.homeTeamTextView);
+            awayTeam = (TextView) itemView.findViewById(R.id.awayTeamTextView);
+            competition = (TextView) itemView.findViewById(R.id.competitionTextView);
+            channel = (TextView) itemView.findViewById(R.id.channelTextView);
             bell = (ImageView) itemView.findViewById(R.id.notification);
 
             bell.setOnClickListener(this);
@@ -77,7 +77,7 @@ public class ChildRecyclerAdapter extends RecyclerView.Adapter<ChildRecyclerAdap
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_games_row, parent, false);
         return new ViewHolder(view);
     }
 
