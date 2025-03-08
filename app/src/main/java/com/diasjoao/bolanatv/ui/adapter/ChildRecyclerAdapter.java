@@ -6,6 +6,7 @@ import android.provider.CalendarContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,6 +28,7 @@ public class ChildRecyclerAdapter extends RecyclerView.Adapter<ChildRecyclerAdap
         private TextView competition;
         private TextView channel;
         private ImageView bell;
+        private TextView live;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -36,6 +38,7 @@ public class ChildRecyclerAdapter extends RecyclerView.Adapter<ChildRecyclerAdap
             competition = (TextView) itemView.findViewById(R.id.competitionTextView);
             channel = (TextView) itemView.findViewById(R.id.channelTextView);
             bell = (ImageView) itemView.findViewById(R.id.notification);
+            live = (TextView) itemView.findViewById(R.id.liveTextView);
 
             bell.setOnClickListener(this);
         }
@@ -89,6 +92,8 @@ public class ChildRecyclerAdapter extends RecyclerView.Adapter<ChildRecyclerAdap
         holder.awayTeam.setText(game.getAway());
         holder.competition.setText(game.getCompetition());
         holder.channel.setText(game.getChannel());
+
+        //holder.live.startAnimation(AnimationUtils.loadAnimation(holder.itemView.getContext(), R.anim.pulse));
     }
 
     @Override
