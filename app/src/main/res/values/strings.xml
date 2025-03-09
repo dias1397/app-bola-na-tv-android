@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Bola na TV</string>
-    <string name="version">Versão 3.0.0</string>
+    <string name="version">Versão</string>
     <string name="developer_email">bolanatv.appsuporte@gmail.com</string>
     <string name="developer_name">João Amaral Dias</string>
     <string-array name="developer_emails">
@@ -67,6 +67,11 @@
     <string name="bell_notification">Bell notification</string>
     <string name="live">Em\nDireto</string>
     <string name="channel">Channel</string>
+    <string name="appVersionNumber">3.0.0</string>
+    <string name="lastUpdate">Atualizado em</string>
+    <string name="lastUpdateDate">Março 2025</string>
+    <string name="app_description">Bola na TV é uma aplicação que lhe permite saber onde serão transmitidos todos os jogos de futebol na televisão portuguesa e em que horário. Oferece ainda a informação relativa a que competição está inserido cada jogo e também a possibilidade de criar alarmes para cada um dos jogos.</string>
+    <string name="rateTheApp">Avalie a app</string>
 
 
 </resources>

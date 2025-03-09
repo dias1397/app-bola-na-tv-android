@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 emailIntent.setType("message/rfc822");
                 startActivity(Intent.createChooser(emailIntent, "Selecione um provedor de email"));
             } else if (id == R.id.nav_about) {
-                startActivity(new Intent(MainActivity.this, DetailsActivity.class));
+                startActivity(new Intent(MainActivity.this, AboutActivity.class));
             } else if (id == R.id.nav_privacy) {
                 startActivity(new Intent(MainActivity.this, PrivacyActivity.class));
             }
