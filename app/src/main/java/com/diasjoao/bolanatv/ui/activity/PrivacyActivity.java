@@ -1,20 +1,17 @@
 package com.diasjoao.bolanatv.ui.activity;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.diasjoao.bolanatv.R;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.material.appbar.MaterialToolbar;
 
 public class PrivacyActivity extends AppCompatActivity {
+    private MaterialToolbar materialToolbar;
     private AdView mAdView;
 
     @Override
@@ -22,29 +19,16 @@ public class PrivacyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_privacy);
 
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-            }
-        });
+        getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryVariant, null));
 
+        materialToolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(materialToolbar);
+        materialToolbar.setNavigationOnClickListener(v -> getOnBackPressedDispatcher().onBackPressed());
+
+        MobileAds.initialize(this, initializationStatus -> {
+        });
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
-
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        intent.putExtra("games", getIntent().getSerializableExtra("games"));
-        intent.putExtra("hasNetwork", getIntent().getBooleanExtra("hasNetwork", true));
-        finish();
-        startActivityForResult(intent, 0);
-        return true;
     }
 }

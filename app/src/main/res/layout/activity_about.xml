@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="32dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/adView"
+        app:layout_constraintBottom_toTopOf="@+id/privacyTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
@@ -94,6 +94,18 @@
             android:text="@string/rateTheApp"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
     </LinearLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/privacyTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:text="@string/PrivacyTitle"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+        android:textColor="@color/colorPrimary"
+        android:clickable="true"
+        app:layout_constraintBottom_toTopOf="@+id/adView" />
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"

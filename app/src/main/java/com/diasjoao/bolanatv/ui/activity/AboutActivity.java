@@ -17,10 +17,12 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textview.MaterialTextView;
 
 public class AboutActivity extends AppCompatActivity {
     private MaterialToolbar materialToolbar;
     private MaterialButton rateAppButton;
+    private MaterialTextView privacyTextView;
     private AdView mAdView;
 
     @Override
@@ -44,6 +46,9 @@ public class AboutActivity extends AppCompatActivity {
 
         rateAppButton = findViewById(R.id.rateAppButton);
         rateAppButton.setOnClickListener(view -> openPlayStoreForRating());
+
+        privacyTextView = findViewById(R.id.privacyTextView);
+        privacyTextView.setOnClickListener(view -> startActivity(new Intent(AboutActivity.this, PrivacyActivity.class)));
 
         MobileAds.initialize(this, initializationStatus -> {
         });
