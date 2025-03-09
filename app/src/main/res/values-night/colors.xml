@@ -7,8 +7,8 @@
     <color name="colorSecondaryVariant">#FFA726</color>
 
     <!-- Background, Surface, and Error colors -->
-    <color name="colorBackground">#121212</color>
-    <color name="colorSurface">#1E1E1E</color>
+    <color name="colorBackground">#1E1E1E</color>
+    <color name="colorSurface">#111111</color>
     <color name="colorError">#CF6679</color>
 
     <!-- Text and icon colors -->

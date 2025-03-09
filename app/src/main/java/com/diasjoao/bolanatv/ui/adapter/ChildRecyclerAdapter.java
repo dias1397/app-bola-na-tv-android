@@ -99,7 +99,7 @@ public class ChildRecyclerAdapter extends RecyclerView.Adapter<ChildRecyclerAdap
             holder.live.startAnimation(AnimationUtils.loadAnimation(holder.itemView.getContext(), R.anim.pulse));
         } else {
             holder.bell.setVisibility(View.VISIBLE);
-            holder.live.setVisibility(View.GONE);
+            holder.live.setVisibility(View.INVISIBLE);
         }
     }
 

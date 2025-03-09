@@ -9,23 +9,15 @@
         android:id="@+id/timeTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:padding="8dp"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="4dp"
         android:background="@color/colorBackground"
         android:text="@string/timePlaceholder"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorPrimaryVariant"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:id="@+id/separatorView"
-        android:layout_width="0dp"
-        android:layout_height="0.1dp"
-        android:background="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timeTextView" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/gamesRecyclerView"
@@ -33,7 +25,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/separatorView"
+        app:layout_constraintTop_toBottomOf="@+id/timeTextView"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:listitem="@layout/item_games_row" />
 
