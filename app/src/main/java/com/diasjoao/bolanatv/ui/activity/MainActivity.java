@@ -105,8 +105,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(Intent.createChooser(emailIntent, "Selecione um provedor de email"));
             } else if (id == R.id.nav_about) {
                 startActivity(new Intent(MainActivity.this, AboutActivity.class));
-            } else if (id == R.id.nav_privacy) {
-                startActivity(new Intent(MainActivity.this, PrivacyActivity.class));
             }
 
             drawerLayout.closeDrawer(GravityCompat.START);
