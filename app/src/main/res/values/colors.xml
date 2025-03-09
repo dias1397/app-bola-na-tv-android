@@ -16,20 +16,5 @@
     <color name="colorOnSecondary">#000000</color>
     <color name="colorOnSurface">#212121</color>
 
-    <!-- Error text color -->
-    <color name="colorOnError">#FFFFFF</color>
-    <color name="rowPrimary">#FFFFFF</color>
-    <color name="rowAlternate">#F1F1F1</color>
-
-
-
-    <color name="primaryColor">#43a047</color>
-    <color name="primaryLightColor">#76d275</color>
-    <color name="primaryDarkColor">#00701a</color>
-    <color name="secondaryColor">#455a64</color>
-    <color name="secondaryLightColor">#718792</color>
-    <color name="secondaryDarkColor">#1c313a</color>
-    <color name="primaryTextColor">#000000</color>
-    <color name="secondaryTextColor">#ffffff</color>
-    <color name="lightGrey">#dddddd</color>
+    <color name="loadingScreenColor">#43a047</color>
 </resources>

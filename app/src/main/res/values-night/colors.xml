@@ -15,9 +15,4 @@
     <color name="colorOnPrimary">#FFFFFF</color>
     <color name="colorOnSecondary">#000000</color>
     <color name="colorOnSurface">#E0E0E0</color>
-
-    <!-- Error text color -->
-    <color name="colorOnError">#FFFFFF</color>
-    <color name="rowPrimary">#1E1E1E</color>
-    <color name="rowAlternate">#121212</color>
 </resources>
