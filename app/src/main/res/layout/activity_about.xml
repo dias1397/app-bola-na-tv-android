@@ -58,14 +58,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:text="@string/appVersionNumber"
+            android:text="@string/app_version"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body2" />
 
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/lastUpdate"
+            android:text="@string/last_update"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
             app:fontFamily="sans-serif-medium" />
 
@@ -73,7 +73,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
-            android:text="@string/lastUpdateDate"
+            android:text="@string/app_last_update_date"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body2" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -91,7 +91,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/rateTheApp"
+            android:text="@string/rate_the_app"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
     </LinearLayout>
 
@@ -101,7 +101,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:gravity="center"
-        android:text="@string/PrivacyTitle"
+        android:text="@string/privacy_policy_title"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
         android:textColor="@color/colorPrimary"
         android:clickable="true"

@@ -12,7 +12,7 @@
         android:paddingHorizontal="8dp"
         android:paddingVertical="4dp"
         android:background="@color/colorBackground"
-        android:text="@string/timePlaceholder"
+        android:text="@string/time_placeholder"
         android:textColor="@color/colorPrimaryVariant"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
         app:layout_constraintEnd_toEndOf="parent"

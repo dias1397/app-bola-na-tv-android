@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
                 GoogleUtils.launchMarket(MainActivity.this);
             } else if (id == R.id.nav_comment) {
                 Intent emailIntent = new Intent(Intent.ACTION_SEND);
-                emailIntent.putExtra(Intent.EXTRA_EMAIL, getResources().getStringArray(R.array.developer_emails));
+                emailIntent.putExtra(Intent.EXTRA_EMAIL, getResources().getStringArray(R.array.app_emails));
                 emailIntent.setType("message/rfc822");
                 startActivity(Intent.createChooser(emailIntent, "Selecione um provedor de email"));
             } else if (id == R.id.nav_about) {
