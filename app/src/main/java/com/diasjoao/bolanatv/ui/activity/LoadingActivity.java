@@ -16,6 +16,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.diasjoao.bolanatv.BuildConfig;
 import com.diasjoao.bolanatv.R;
 import com.diasjoao.bolanatv.model.Game;
 import com.diasjoao.bolanatv.util.NetworkUtils;
@@ -91,7 +92,7 @@ public class LoadingActivity extends AppCompatActivity {
     }
 
     private void fetchGamesData() {
-        apiUrl = getString(R.string.api_url_bola_na_tv);
+        apiUrl = BuildConfig.API_URL;
         Map<Date, Map<String, List<Game>>> result = new HashMap<>();
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, apiUrl, null, response -> {
