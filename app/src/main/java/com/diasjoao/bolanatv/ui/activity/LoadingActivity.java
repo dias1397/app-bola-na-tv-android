@@ -118,7 +118,8 @@ public class LoadingActivity extends AppCompatActivity {
                                     jsonObject.getString("homeTeam"),
                                     jsonObject.getString("awayTeam"),
                                     jsonObject.getString("channel"),
-                                    jsonObject.getString("competition").substring(0, jsonObject.getString("competition").length() - 1),
+                                    jsonObject.getString("channelLogo"),
+                                    jsonObject.getString("competition"),
                                     DateUtils.dateIsInThePast(gameDate, jsonObject.getString("time"))
                             )
                     );

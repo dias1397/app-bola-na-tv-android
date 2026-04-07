@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.diasjoao.bolanatv.R;
 import com.diasjoao.bolanatv.model.Game;
 
+import java.time.Duration;
 import java.util.Calendar;
 import java.util.List;
 
@@ -98,17 +100,22 @@ public class ChildRecyclerAdapter extends RecyclerView.Adapter<ChildRecyclerAdap
         holder.awayTeam.setText(game.getAway());
         holder.competition.setText(game.getCompetition());
 
-        String channel = game.getChannel();
         int resId = context.getResources().getIdentifier(
-                "tv_logo_" + channel.toLowerCase(),
+                "tv_logo_" + game.getChannelLogo(),
                 "drawable",
                 context.getPackageName()
         );
         if (resId != 0) {
             holder.channelLogo.setImageResource(resId);
             holder.channelLogo.setVisibility(VISIBLE);
+            holder.channelLogo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(context, game.getChannel(), Toast.LENGTH_SHORT).show();
+                }
+            });
         } else {
-            holder.channel.setText(channel);
+            holder.channel.setText(game.getChannel());
             holder.channel.setVisibility(VISIBLE);
         }
 

@@ -10,19 +10,20 @@ public class Game implements Serializable {
     private String home;
     private String away;
     private String channel;
+    private String channelLogo;
     private String competition;
     private boolean isLive;
 
-    public Game(String date, String time, String home, String away, String channel, String competition, boolean isLive) {
+    public Game(String date, String time, String home, String away, String channel, String channelLogo, String competition, boolean isLive) {
         this.date = date;
         this.time = time;
         this.home = home;
         this.away = away;
         this.channel = channel;
+        this.channelLogo = channelLogo;
         this.competition = competition;
         this.isLive = isLive;
     }
-
     public String getDate() {
         return date;
     }
@@ -79,6 +80,14 @@ public class Game implements Serializable {
         isLive = live;
     }
 
+    public String getChannelLogo() {
+        return channelLogo;
+    }
+
+    public void setChannelLogo(String channelLogo) {
+        this.channelLogo = channelLogo;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -89,12 +98,13 @@ public class Game implements Serializable {
                 Objects.equals(home, game.home) &&
                 Objects.equals(away, game.away) &&
                 Objects.equals(channel, game.channel) &&
+                Objects.equals(channelLogo, game.channelLogo) &&
                 Objects.equals(competition, game.competition);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(date, time, home, away, channel, competition);
+        return Objects.hash(date, time, home, away, channel, channelLogo, competition);
     }
 
     @Override
@@ -105,6 +115,7 @@ public class Game implements Serializable {
                 ", home='" + home + '\'' +
                 ", away='" + away + '\'' +
                 ", channel='" + channel + '\'' +
+                ", channelLogo='" + channelLogo + '\'' +
                 ", competition='" + competition + '\'' +
                 '}';
     }
