@@ -1,5 +1,9 @@
 package com.diasjoao.bolanatv.ui.adapter;
 
+import static android.view.View.GONE;
+import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
+
 import android.content.Context;
 import android.content.Intent;
 import android.provider.CalendarContract;
@@ -27,6 +31,7 @@ public class ChildRecyclerAdapter extends RecyclerView.Adapter<ChildRecyclerAdap
         private TextView awayTeam;
         private TextView competition;
         private TextView channel;
+        private ImageView channelLogo;
         private ImageView bell;
         private TextView live;
 
@@ -37,6 +42,7 @@ public class ChildRecyclerAdapter extends RecyclerView.Adapter<ChildRecyclerAdap
             awayTeam = (TextView) itemView.findViewById(R.id.awayTeamTextView);
             competition = (TextView) itemView.findViewById(R.id.competitionTextView);
             channel = (TextView) itemView.findViewById(R.id.channelTextView);
+            channelLogo = (ImageView) itemView.findViewById(R.id.channelImageView);
             bell = (ImageView) itemView.findViewById(R.id.notification);
             live = (TextView) itemView.findViewById(R.id.liveTextView);
 
@@ -91,15 +97,28 @@ public class ChildRecyclerAdapter extends RecyclerView.Adapter<ChildRecyclerAdap
         holder.homeTeam.setText(game.getHome());
         holder.awayTeam.setText(game.getAway());
         holder.competition.setText(game.getCompetition());
-        holder.channel.setText(game.getChannel());
+
+        String channel = game.getChannel();
+        int resId = context.getResources().getIdentifier(
+                "tv_logo_" + channel.toLowerCase(),
+                "drawable",
+                context.getPackageName()
+        );
+        if (resId != 0) {
+            holder.channelLogo.setImageResource(resId);
+            holder.channelLogo.setVisibility(VISIBLE);
+        } else {
+            holder.channel.setText(channel);
+            holder.channel.setVisibility(VISIBLE);
+        }
 
         if (game.isLive()) {
-            holder.bell.setVisibility(View.GONE);
-            holder.live.setVisibility(View.VISIBLE);
+            holder.bell.setVisibility(GONE);
+            holder.live.setVisibility(VISIBLE);
             holder.live.startAnimation(AnimationUtils.loadAnimation(holder.itemView.getContext(), R.anim.pulse));
         } else {
-            holder.bell.setVisibility(View.VISIBLE);
-            holder.live.setVisibility(View.INVISIBLE);
+            holder.bell.setVisibility(VISIBLE);
+            holder.live.setVisibility(INVISIBLE);
         }
     }
 

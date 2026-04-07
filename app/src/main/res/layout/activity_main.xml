@@ -19,12 +19,12 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:title="@string/app_name"
-            app:titleTextColor="@color/colorOnPrimary"/>
+            app:titleTextColor="@color/colorOnPrimary"
+            android:textAppearance="@style/TextAppearance.Material3.HeadlineLarge"/>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
@@ -43,7 +43,7 @@
             app:layout_constraintBottom_toTopOf="@+id/adView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tabLayout"></androidx.viewpager.widget.ViewPager>
+            app:layout_constraintTop_toBottomOf="@+id/tabLayout"/>
 
         <com.google.android.gms.ads.AdView
             android:id="@+id/adView"

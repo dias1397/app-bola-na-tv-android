@@ -68,7 +68,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:text="@string/home_team_placeholder"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
             app:layout_constraintEnd_toStartOf="@+id/channelTextView"
             app:layout_constraintStart_toEndOf="@+id/separatorView"
             app:layout_constraintTop_toTopOf="parent" />
@@ -82,7 +82,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:text="@string/away_team_placeholder"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
             app:layout_constraintBottom_toTopOf="@+id/competitionTextView"
             app:layout_constraintEnd_toStartOf="@+id/channelTextView"
             app:layout_constraintStart_toEndOf="@+id/separatorView"
@@ -96,10 +96,24 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:text="@string/channel_placeholder"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+            android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
             app:layout_constraintBottom_toTopOf="@+id/competitionTextView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:id="@+id/channelImageView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:visibility="gone"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintBottom_toTopOf="@+id/competitionTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/competitionTextView"
@@ -110,7 +124,7 @@
             android:gravity="center"
             android:text="@string/competition_placeholder"
             android:textColor="@color/colorOnPrimary"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+            android:textAppearance="@style/TextAppearance.Material3.BodySmall"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

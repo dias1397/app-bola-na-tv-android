@@ -97,7 +97,7 @@ public class LoadingActivity extends AppCompatActivity {
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, apiUrl, null, response -> {
             try {
-                JSONArray jsonArray = response.getJSONArray("games");
+                JSONArray jsonArray = response.getJSONObject("data").getJSONArray("data");
 
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
