@@ -108,12 +108,9 @@ public class ChildRecyclerAdapter extends RecyclerView.Adapter<ChildRecyclerAdap
         if (resId != 0) {
             holder.channelLogo.setImageResource(resId);
             holder.channelLogo.setVisibility(VISIBLE);
-            holder.channelLogo.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Toast.makeText(context, game.getChannel(), Toast.LENGTH_SHORT).show();
-                }
-            });
+            holder.channelLogo.setOnClickListener(
+                    view -> Toast.makeText(context, game.getChannel(), Toast.LENGTH_SHORT).show()
+            );
         } else {
             holder.channel.setText(game.getChannel());
             holder.channel.setVisibility(VISIBLE);

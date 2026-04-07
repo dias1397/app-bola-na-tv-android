@@ -12,7 +12,7 @@ public class DateUtils {
 
     public static SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("dd-MM-yy");
 
-    public static SimpleDateFormat simpleDateFormat2 = new SimpleDateFormat("EEE\ndd MMM");
+    public static SimpleDateFormat simpleDateFormat2 = new SimpleDateFormat("EEE\nd");
 
     public static boolean dateIsInThePast(Date date, String timeString) {
         LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();

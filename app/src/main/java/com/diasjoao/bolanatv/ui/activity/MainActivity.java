@@ -80,8 +80,8 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryVariant, null));
         setSupportActionBar(materialToolbar);
 
-        materialToolbar.setNavigationIcon(R.drawable.ic_menu);
-        materialToolbar.setNavigationOnClickListener(view -> drawerLayout.openDrawer(GravityCompat.START));
+        //materialToolbar.setNavigationIcon(R.drawable.ic_menu);
+        //materialToolbar.setNavigationOnClickListener(view -> drawerLayout.openDrawer(GravityCompat.START));
     }
 
     private void setupAds() {
