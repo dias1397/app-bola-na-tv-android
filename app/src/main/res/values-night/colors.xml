@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary brand colors -->
+    <color name="colorPrimary">#4CAF50</color>
+    <color name="colorPrimaryVariant">#2E7D32</color>
+    <color name="colorPrimaryDark">#111111</color>
+    <color name="colorSecondary">#FFB74D</color>
+    <color name="colorSecondaryVariant">#FFA726</color>
+
+    <!-- Background, Surface, and Error colors -->
+    <color name="colorBackground">#1E1E1E</color>
+    <color name="colorSurface">#111111</color>
+    <color name="colorError">#CF6679</color>
+
+    <!-- Text and icon colors -->
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="colorOnSecondary">#000000</color>
+    <color name="colorOnSurface">#E0E0E0</color>
+</resources>

@@ -1,0 +1,122 @@
+package com.diasjoao.bolanatv.model;
+
+import java.io.Serializable;
+import java.util.Objects;
+
+public class Game implements Serializable {
+
+    private String date;
+    private String time;
+    private String home;
+    private String away;
+    private String channel;
+    private String channelLogo;
+    private String competition;
+    private boolean isLive;
+
+    public Game(String date, String time, String home, String away, String channel, String channelLogo, String competition, boolean isLive) {
+        this.date = date;
+        this.time = time;
+        this.home = home;
+        this.away = away;
+        this.channel = channel;
+        this.channelLogo = channelLogo;
+        this.competition = competition;
+        this.isLive = isLive;
+    }
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getHome() {
+        return home;
+    }
+
+    public void setHome(String home) {
+        this.home = home;
+    }
+
+    public String getAway() {
+        return away;
+    }
+
+    public void setAway(String away) {
+        this.away = away;
+    }
+
+    public String getChannel() {
+        return channel;
+    }
+
+    public void setChannel(String channel) {
+        this.channel = channel;
+    }
+
+    public String getCompetition() {
+        return competition;
+    }
+
+    public void setCompetition(String competition) {
+        this.competition = competition;
+    }
+
+    public boolean isLive() {
+        return isLive;
+    }
+
+    public void setLive(boolean live) {
+        isLive = live;
+    }
+
+    public String getChannelLogo() {
+        return channelLogo;
+    }
+
+    public void setChannelLogo(String channelLogo) {
+        this.channelLogo = channelLogo;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Game game = (Game) o;
+        return Objects.equals(date, game.date) &&
+                Objects.equals(time, game.time) &&
+                Objects.equals(home, game.home) &&
+                Objects.equals(away, game.away) &&
+                Objects.equals(channel, game.channel) &&
+                Objects.equals(channelLogo, game.channelLogo) &&
+                Objects.equals(competition, game.competition);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(date, time, home, away, channel, channelLogo, competition);
+    }
+
+    @Override
+    public String toString() {
+        return "Game{" +
+                "date='" + date + '\'' +
+                ", time='" + time + '\'' +
+                ", home='" + home + '\'' +
+                ", away='" + away + '\'' +
+                ", channel='" + channel + '\'' +
+                ", channelLogo='" + channelLogo + '\'' +
+                ", competition='" + competition + '\'' +
+                '}';
+    }
+}

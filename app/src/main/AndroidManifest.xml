@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_CALENDAR" />
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
-    <uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
 
     <application
         android:allowBackup="true"
@@ -18,25 +18,26 @@
         android:usesCleartextTraffic="true">
 
         <activity
-            android:name=".activities.LoadingActivity"
-            android:label="Bola na Tv"
+            android:name=".ui.activity.LoadingActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.MainActivity" />
-        <activity android:name=".activities.SettingsActivity" />
-
-        <activity android:name=".activities.DetailsActivity"
-                  android:theme="@style/AppThemeBar"/>
-        <activity android:name=".activities.PrivacyActivity"
-                  android:theme="@style/AppThemeBar" />
+        <activity
+            android:name=".ui.activity.MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.AboutActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.PrivacyActivity"
+            android:exported="false" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="${ads_application_id}"/>
+            android:value="${ads_application_id}" />
     </application>
-
 </manifest>
