@@ -5,9 +5,11 @@ import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.GravityCompat;
 import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentStatePagerAdapter;
@@ -59,8 +61,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initializeViews() {
-        drawerLayout = findViewById(R.id.drawer_layout);
-        navigationView = findViewById(R.id.navigation_view);
+        //drawerLayout = findViewById(R.id.drawer_layout);
+        //navigationView = findViewById(R.id.navigation_view);
         materialToolbar = findViewById(R.id.toolbar);
 
         adBannerView = findViewById(R.id.adView);
@@ -71,13 +73,21 @@ public class MainActivity extends AppCompatActivity {
     private void setupUI() {
         EdgeToEdge.enable(this);
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+        ViewCompat.setOnApplyWindowInsetsListener(materialToolbar, (v, insets) -> {
+
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.statusBars());
+
+            v.setPadding(
+                    v.getPaddingLeft(),
+                    systemBars.top,
+                    v.getPaddingRight(),
+                    v.getPaddingBottom()
+            );
+
             return insets;
         });
 
-        getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryVariant, null));
+        //getWindow().setStatusBarColor(getResources().getColor(R.color.md_theme_primary, null));
         setSupportActionBar(materialToolbar);
 
         //materialToolbar.setNavigationIcon(R.drawable.ic_menu);
@@ -93,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupListeners() {
-        navigationView.setNavigationItemSelectedListener(item -> {
+        /*navigationView.setNavigationItemSelectedListener(item -> {
             int id = item.getItemId();
 
             if (id == R.id.nav_rate) {
@@ -109,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
 
             drawerLayout.closeDrawer(GravityCompat.START);
             return true;
-        });
+        });*/
 
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager));

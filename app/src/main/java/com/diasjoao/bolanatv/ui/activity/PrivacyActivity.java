@@ -19,7 +19,7 @@ public class PrivacyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_privacy);
 
-        getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryVariant, null));
+        //getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryVariant, null));
 
         materialToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(materialToolbar);

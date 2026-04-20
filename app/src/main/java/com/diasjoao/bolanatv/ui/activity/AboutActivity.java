@@ -38,7 +38,7 @@ public class AboutActivity extends AppCompatActivity {
             return insets;
         });
 
-        getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryVariant, null));
+        //getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryVariant, null));
 
         materialToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(materialToolbar);

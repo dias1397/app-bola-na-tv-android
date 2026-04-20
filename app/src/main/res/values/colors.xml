@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Primary brand colors -->
-    <color name="colorPrimary">#4CAF50</color>
-    <color name="colorPrimaryVariant">#388E3C</color>
-    <color name="colorPrimaryDark">#388E3C</color>
-    <color name="colorSecondary">#FF9800</color>
-    <color name="colorSecondaryVariant">#F57C00</color>
+    <color name="primary">#496429</color>
+    <color name="onPrimary">#FFFFFF</color>
 
-    <!-- Background, Surface, and Error colors -->
-    <color name="colorBackground">#F7F9FC</color>
-    <color name="colorSurface">#FFFFFF</color>
-    <color name="colorError">#D32F2F</color>
+    <color name="secondary">#576247</color>
+    <color name="onSecondary">#FFFFFF</color>
 
-    <!-- Text and icon colors -->
-    <color name="colorOnPrimary">#FFFFFF</color>
-    <color name="colorOnSecondary">#000000</color>
-    <color name="colorOnSurface">#212121</color>
+    <color name="tertiary">#7D5260</color>
+    <color name="onTertiary">#FFFFFF</color>
 
-    <color name="loadingScreenColor">#43a047</color>
+    <color name="error">#BA1A1A</color>
+    <color name="onError">#FFFFFF</color>
+
+    <color name="background">#fcfcfc</color>
+    <color name="onBackground">#323331</color>
+
+    <color name="surface">#fcfcfc</color>
+    <color name="onSurface">#323331</color>
+
+    <color name="outline">#919987</color>
 </resources>

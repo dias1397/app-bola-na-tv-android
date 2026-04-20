@@ -70,8 +70,6 @@ public class LoadingActivity extends AppCompatActivity {
             return insets;
         });
 
-        getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryVariant, null));
-
         logoImageView.startAnimation(AnimationUtils.loadAnimation(LoadingActivity.this, R.anim.pulse));
         retryButton.setOnClickListener(view -> {
             finish();
