@@ -1,6 +1,5 @@
 package com.diasjoao.bolanatv.activities;
 
-import com.diasjoao.bolanatv.BuildConfig;
 import com.diasjoao.bolanatv.R;
 import com.diasjoao.bolanatv.models.Game;
 import com.diasjoao.bolanatv.utils.NetworkUtils;
