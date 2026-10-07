@@ -8,9 +8,9 @@ android {
     namespace 'com.diasjoao.bolanatv'
     defaultConfig {
         applicationId "com.diasjoao.bolanatv"
-        compileSdk 35
+        compileSdkVersion 37
         minSdkVersion 26
-        targetSdkVersion 35
+        targetSdkVersion 37
         versionCode 4
         versionName "4.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -35,24 +35,24 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.7.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
+    implementation 'androidx.appcompat:appcompat:1.8.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.2'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    implementation 'androidx.navigation:navigation-fragment:2.8.8'
-    implementation 'androidx.navigation:navigation-ui:2.8.8'
+    implementation 'androidx.navigation:navigation-fragment:2.10.2'
+    implementation 'androidx.navigation:navigation-ui:2.10.2'
     implementation 'androidx.preference:preference:1.2.1'
 
     implementation 'com.android.volley:volley:1.2.1'
     implementation 'com.github.shuhart:stickyheader:1.1.0'
-    implementation 'com.google.android.gms:play-services-ads:24.0.0'
-    implementation 'com.google.android.material:material:1.12.0'
-    implementation 'com.squareup.okhttp3:okhttp:4.3.0'
+    implementation 'com.google.android.gms:play-services-ads:25.5.0'
+    implementation 'com.google.android.material:material:1.14.0'
+    implementation 'com.squareup.okhttp3:okhttp:5.5.0'
 
-    implementation 'org.jsoup:jsoup:1.17.2'
+    implementation 'org.jsoup:jsoup:1.23.2'
 
-    androidTestImplementation 'androidx.test:runner:1.6.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
+    androidTestImplementation 'androidx.test:runner:1.7.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.7.0'
 
     testImplementation 'junit:junit:4.13.2'
 }
