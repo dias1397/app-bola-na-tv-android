@@ -10,8 +10,8 @@ android {
         minSdkVersion 24
         compileSdkVersion 37
         targetSdkVersion 37
-        versionCode 3
-        versionName "3.0"
+        versionCode 6
+        versionName "3.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         manifestPlaceholders = [ads_application_id: appProperties['ads_application_id']]
