@@ -58,7 +58,7 @@ public class GamesFragment extends Fragment {
         games = (HashMap< String, List<Game>>)getArguments().getSerializable(ARG_PARAM1);
 
         recyclerView = view.findViewById(R.id.gamesRecyclerView);
-        recyclerView.setHasFixedSize(true);
+        //recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         MainRecyclerAdapter mainRecyclerAdapter = new MainRecyclerAdapter(getActivity(), games);

@@ -66,7 +66,7 @@ public class MainRecyclerAdapter extends StickyAdapter<MainRecyclerAdapter.ViewH
         final List<Game> sectionItems = sectionList.get(sectionTitle);
 
         holder.sectionTitleTextView.setText(sectionTitle);
-        holder.sectionRecyclerView.setHasFixedSize(true);
+        //holder.sectionRecyclerView.setHasFixedSize(true);
         holder.sectionRecyclerView.setLayoutManager(new LinearLayoutManager(context));
 
         ChildRecyclerAdapter childRecyclerAdapter = new ChildRecyclerAdapter(context, sectionItems);
