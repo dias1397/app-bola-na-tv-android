@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="bp_background">#E9ECE5</color>
+    <color name="bp_surface">#F4F5F0</color>
+    <color name="bp_outline">#D0D7CC</color>
+    <color name="bp_on_surface">#1B2620</color>
+    <color name="bp_on_surface_muted">#566559</color>
+    <color name="bp_accent">#266B43</color>
+    <color name="bp_on_accent">#F4F5F0</color>
+
+    <!-- Channel brands -->
+    <color name="bp_sporttv">#A8363B</color>
+    <color name="bp_dazn">#D9CC4A</color>
+    <color name="bp_on_dazn">#14130A</color>
+    <color name="bp_canal11">#3A67B5</color>
+    <color name="bp_on_brand">#FFFFFF</color>
+
     <!-- Primary brand colors -->
     <color name="colorPrimary">#4CAF50</color>
     <color name="colorPrimaryVariant">#388E3C</color>

@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="bp_background">#0F1512</color>
+    <color name="bp_surface">#171F1B</color>
+    <color name="bp_outline">#26322C</color>
+    <color name="bp_on_surface">#D9E2DC</color>
+    <color name="bp_on_surface_muted">#8A9A90</color>
+    <color name="bp_accent">#3FAE6E</color>
+    <color name="bp_on_accent">#07130C</color>
+
+    <color name="bp_sporttv">#B23A3F</color>
+    <color name="bp_dazn">#DCCF45</color>
+    <color name="bp_on_dazn">#14130A</color>
+    <color name="bp_canal11">#3A67B5</color>
+    <color name="bp_on_brand">#FFFFFF</color>
+
     <!-- Primary brand colors -->
     <color name="colorPrimary">#4CAF50</color>
     <color name="colorPrimaryVariant">#2E7D32</color>

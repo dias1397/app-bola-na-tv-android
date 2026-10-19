@@ -1,22 +1,18 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Primary brand colors -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
+    <style name="AppTheme" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/bp_accent</item>
+        <item name="colorOnPrimary">@color/bp_on_accent</item>
 
-        <!-- Secondary brand colors -->
-        <item name="colorSecondary">@color/colorSecondary</item>
-        <item name="colorSecondaryVariant">@color/colorSecondaryVariant</item>
+        <item name="colorSurface">@color/bp_surface</item>
+        <item name="colorOnSurface">@color/bp_on_surface</item>
+        <item name="colorOnSurfaceVariant">@color/bp_on_surface_muted</item>
 
-        <!-- Background, Surface, and Error colors -->
-        <item name="android:colorBackground">@color/colorBackground</item>
-        <item name="colorSurface">@color/colorSurface</item>
-        <item name="colorError">@color/colorError</item>
+        <item name="colorOutline">@color/bp_outline</item>
 
-        <!-- Text and icon colors -->
-        <item name="colorOnPrimary">@color/colorOnPrimary</item>
-        <item name="colorOnSecondary">@color/colorOnSecondary</item>
-        <item name="colorOnSurface">@color/colorOnSurface</item>
+        <item name="android:colorBackground">@color/bp_background</item>
+        <item name="android:statusBarColor">@color/bp_background</item>
+        <item name="android:navigationBarColor">@color/bp_background</item>
+        <item name="android:windowLightStatusBar">@bool/bp_light_bars</item>
     </style>
 </resources>
