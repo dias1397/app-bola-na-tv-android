@@ -23,6 +23,10 @@ public class Game implements Serializable {
         this.isLive = isLive;
     }
 
+    public Game() {
+
+    }
+
     public String getDate() {
         return date;
     }
