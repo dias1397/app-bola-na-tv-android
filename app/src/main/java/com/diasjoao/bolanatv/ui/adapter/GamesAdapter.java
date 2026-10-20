@@ -49,7 +49,7 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.VH> {
         h.away.setText(g.getAway());
         h.channel.setText(g.getChannel());
 
-        ChannelStyle style = ChannelStyle.of(h.itemView.getContext(), g.channel);
+        ChannelStyle style = ChannelStyle.of(h.itemView.getContext(), g.getChannel());
         ViewCompat.setBackgroundTintList(h.channel, ColorStateList.valueOf(style.background));
         h.channel.setTextColor(style.text);
 
