@@ -16,6 +16,26 @@
         app:titleMarginStart="16dp"
         app:titleTextAppearance="@style/TextAppearance.BP.Title" />
 
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bp_background"
+        android:visibility="gone"
+        app:tabGravity="start"
+        app:tabIndicatorColor="@color/bp_accent"
+        app:tabIndicatorHeight="3dp"
+        app:tabMode="scrollable"
+        app:tabRippleColor="@null"
+        app:tabSelectedTextColor="@color/bp_accent"
+        app:tabTextAppearance="@style/TextAppearance.BP.Tab"
+        app:tabTextColor="@color/bp_on_surface_muted" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/bp_outline" />
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"

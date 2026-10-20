@@ -9,10 +9,11 @@
     <color name="bp_on_accent">#F4F5F0</color>
 
     <!-- Channel brands -->
-    <color name="bp_sporttv">#A8363B</color>
-    <color name="bp_dazn">#D9CC4A</color>
-    <color name="bp_on_dazn">#14130A</color>
-    <color name="bp_canal11">#3A67B5</color>
+    <color name="bp_sporttv">#FFD500</color>
+    <color name="bp_on_sportv">#000000</color>
+    <color name="bp_dazn">#242424</color>
+    <color name="bp_on_dazn">#FFFFFF</color>
+    <color name="bp_canal11">#007A46</color>
     <color name="bp_on_brand">#FFFFFF</color>
 
     <!-- Primary brand colors -->

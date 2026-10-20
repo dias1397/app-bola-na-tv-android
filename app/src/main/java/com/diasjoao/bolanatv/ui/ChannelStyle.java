@@ -29,7 +29,7 @@ public final class ChannelStyle {
         String key = channel.toLowerCase(Locale.ROOT).replace(" ", "");
 
         if (key.startsWith("sporttv")) {
-            return make(c, R.color.bp_sporttv, R.color.bp_on_brand);
+            return make(c, R.color.bp_sporttv, R.color.bp_on_sportv);
         }
         if (key.startsWith("dazn")) {
             return make(c, R.color.bp_dazn, R.color.bp_on_dazn);
