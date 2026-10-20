@@ -13,7 +13,8 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/bp_background"
         app:title="Bola na TV"
-        app:titleTextColor="@color/bp_on_surface" />
+        app:titleMarginStart="16dp"
+        app:titleTextAppearance="@style/TextAppearance.BP.Title" />
 
     <FrameLayout
         android:layout_width="match_parent"

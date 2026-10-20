@@ -15,4 +15,11 @@
         <item name="android:navigationBarColor">@color/bp_background</item>
         <item name="android:windowLightStatusBar">@bool/bp_light_bars</item>
     </style>
+
+    <style name="TextAppearance.BP.Title" parent="android:TextAppearance">
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">@color/bp_on_surface</item>
+    </style>
 </resources>
