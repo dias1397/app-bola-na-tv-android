@@ -14,6 +14,8 @@
         <item name="android:statusBarColor">@color/bp_background</item>
         <item name="android:navigationBarColor">@color/bp_background</item>
         <item name="android:windowLightStatusBar">@bool/bp_light_bars</item>
+
+        <item name="bottomSheetDialogTheme">@style/ThemeOverlay.BP.BottomSheetDialog</item>
     </style>
 
     <style name="TextAppearance.BP.Title" parent="android:TextAppearance">
@@ -28,5 +30,22 @@
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">15sp</item>
         <item name="textAllCaps">false</item>
+    </style>
+
+    <style name="ThemeOverlay.BP.BottomSheetDialog" parent="ThemeOverlay.Material3.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/Widget.BP.BottomSheet</item>
+    </style>
+
+    <style name="Widget.BP.BottomSheet" parent="Widget.Material3.BottomSheet">
+        <item name="backgroundTint">@color/bp_surface</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.BP.Sheet</item>
+    </style>
+
+    <style name="ShapeAppearance.BP.Sheet" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">24dp</item>
+        <item name="cornerSizeTopRight">24dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
     </style>
 </resources>

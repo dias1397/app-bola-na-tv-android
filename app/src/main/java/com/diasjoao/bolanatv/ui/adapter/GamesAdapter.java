@@ -21,6 +21,16 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.VH> {
 
     private final List<Game> items = new ArrayList<>();
 
+    public interface OnGameClick {
+        void onClick(Game game);
+    }
+
+    private OnGameClick onGameClick;
+
+    public void setOnGameClick(OnGameClick listener) {
+        this.onGameClick = listener;
+    }
+
     public void submit(List<Game> newItems) {
         items.clear();
         items.addAll(newItems);
@@ -55,6 +65,10 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.VH> {
 
         h.itemView.setContentDescription(g.getTime() + ". " + g.getHome() + " contra "
                 + g.getAway() + ". " + g.getCompetition() + ". Canal " + g.getChannel() + ".");
+
+        h.itemView.setOnClickListener(v -> {
+            if (onGameClick != null) onGameClick.onClick(g);
+        });
     }
 
     @Override

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingStart="20dp"
+    android:paddingTop="8dp"
+    android:paddingEnd="20dp"
+    android:paddingBottom="32dp">
+
+    <TextView
+        android:id="@+id/sheet_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed"
+        android:maxLines="2"
+        android:textColor="@color/bp_on_surface"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/sheet_competition"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:textColor="@color/bp_on_surface_muted"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/sheet_when"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:textColor="@color/bp_on_surface"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/bp_outline" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Onde ver"
+            android:textColor="@color/bp_on_surface_muted"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/sheet_channel"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:background="@drawable/bg_channel_tag"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:maxLines="1"
+            android:minWidth="96dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/bp_outline" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/sheet_calendar"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginTop="20dp"
+        android:text="Adicionar ao calendário"
+        android:textColor="@color/bp_on_accent"
+        android:textSize="16sp"
+        app:backgroundTint="@color/bp_accent"
+        app:cornerRadius="14dp" />
+</LinearLayout>

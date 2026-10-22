@@ -49,6 +49,8 @@ public class GamesActivity extends AppCompatActivity {
         list.setLayoutManager(new LinearLayoutManager(this));
         list.setAdapter(adapter);
 
+        adapter.setOnGameClick(game -> GameSheet.newInstance(game).show(getSupportFragmentManager(), "game"));
+
         swipe.setColorSchemeResources(R.color.bp_accent);
         swipe.setProgressBackgroundColorSchemeResource(R.color.bp_surface);
         swipe.setOnRefreshListener(this::load);
@@ -86,7 +88,7 @@ public class GamesActivity extends AppCompatActivity {
                 progress.setVisibility(View.GONE);
                 swipe.setRefreshing(false);
                 allGames = new ArrayList<>(games);
-                allGames.sort(Comparator.comparing(a -> (a.getDate() == null ? "" : a.getDate())));
+                allGames.sort(Comparator.comparing(GamesActivity::sortKey));
                 buildTabs();
             }
 
@@ -149,12 +151,18 @@ public class GamesActivity extends AppCompatActivity {
         for (Game g : allGames) {
             if (currentDate.equals(g.getDate())) day.add(g);
         }
-        day.sort(Comparator.comparing(a -> (a.getTime() == null ? "" : a.getTime())));
         adapter.submit(day);
         list.scrollToPosition(0);
     }
 
     private static String capitalize(String s) {
         return s.isEmpty() ? s : s.substring(0, 1).toUpperCase(PT) + s.substring(1);
+    }
+
+    private static String sortKey(Game g) {
+        String d = g.getDate() == null ? "" : g.getDate();
+        String t = g.getTime() == null ? "" : g.getTime();
+        if (d.length() != 8) return "~" + d + t; // malformed dates go to the end
+        return d.substring(6, 8) + d.substring(3, 5) + d.substring(0, 2) + t;
     }
 }
