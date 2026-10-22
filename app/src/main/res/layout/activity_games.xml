@@ -31,6 +31,64 @@
         app:tabTextAppearance="@style/TextAppearance.BP.Tab"
         app:tabTextColor="@color/bp_on_surface_muted" />
 
+    <LinearLayout
+        android:id="@+id/tabs_skeleton"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="@color/bp_background"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="28dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+            <View android:layout_width="40dp" android:layout_height="12dp"
+                android:background="@drawable/bg_skeleton" />
+            <View android:layout_width="32dp" android:layout_height="10dp"
+                android:layout_marginTop="6dp" android:background="@drawable/bg_skeleton" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="28dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+            <View android:layout_width="40dp" android:layout_height="12dp"
+                android:background="@drawable/bg_skeleton" />
+            <View android:layout_width="32dp" android:layout_height="10dp"
+                android:layout_marginTop="6dp" android:background="@drawable/bg_skeleton" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="28dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+            <View android:layout_width="40dp" android:layout_height="12dp"
+                android:background="@drawable/bg_skeleton" />
+            <View android:layout_width="32dp" android:layout_height="10dp"
+                android:layout_marginTop="6dp" android:background="@drawable/bg_skeleton" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+            <View android:layout_width="40dp" android:layout_height="12dp"
+                android:background="@drawable/bg_skeleton" />
+            <View android:layout_width="32dp" android:layout_height="10dp"
+                android:layout_marginTop="6dp" android:background="@drawable/bg_skeleton" />
+        </LinearLayout>
+    </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -55,12 +113,35 @@
                 android:paddingVertical="8dp" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-        <ProgressBar
-            android:id="@+id/progress"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/skeleton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp"
+            android:visibility="gone">
+
+            <include layout="@layout/item_skeleton" />
+            <include layout="@layout/item_skeleton" />
+            <include layout="@layout/item_skeleton" />
+            <include layout="@layout/item_skeleton" />
+            <include layout="@layout/item_skeleton" />
+            <include layout="@layout/item_skeleton" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/empty"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:indeterminateTint="@color/bp_accent"
+            android:gravity="center"
+            android:lineSpacingMultiplier="1.2"
+            android:padding="32dp"
+            android:text="Sem jogos de momento"
+            android:textColor="@color/bp_on_surface_muted"
+            android:textSize="16sp"
             android:visibility="gone" />
 
         <LinearLayout
@@ -79,6 +160,14 @@
                 android:text="Não foi possível carregar"
                 android:textColor="@color/bp_on_surface"
                 android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Verifica a ligação à internet."
+                android:textColor="@color/bp_on_surface_muted"
+                android:textSize="14sp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/retry"

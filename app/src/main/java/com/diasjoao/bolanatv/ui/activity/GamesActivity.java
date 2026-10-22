@@ -2,6 +2,8 @@ package com.diasjoao.bolanatv.ui.activity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.animation.ObjectAnimator;
+import android.provider.Settings;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -29,7 +31,8 @@ public class GamesActivity extends AppCompatActivity {
     private RecyclerView list;
     private TabLayout tabs;
     private SwipeRefreshLayout swipe;
-    private View progress, error;
+    private View skeleton, skeletonTabs, error, emptyView;
+    private ObjectAnimator pulse;
     private final GamesAdapter adapter = new GamesAdapter();
 
     private List<Game> allGames = new ArrayList<>();
@@ -42,7 +45,9 @@ public class GamesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_games);
 
         swipe = findViewById(R.id.swipe);
-        progress = findViewById(R.id.progress);
+        skeleton = findViewById(R.id.skeleton);
+        skeletonTabs = findViewById(R.id.tabs_skeleton);
+        emptyView = findViewById(R.id.empty);
         error = findViewById(R.id.error);
 
         list = findViewById(R.id.list);
@@ -77,24 +82,26 @@ public class GamesActivity extends AppCompatActivity {
 
     private void load() {
         error.setVisibility(View.GONE);
+        emptyView.setVisibility(View.GONE);
         // First load: centered spinner. Pull to refresh: the swipe spinner.
         if (allGames.isEmpty()) {
-            progress.setVisibility(View.VISIBLE);
+            showSkeleton(true);
         }
 
         GamesApi.getInstance(this).fetchGames(new GamesApi.Callback() {
             @Override
             public void onSuccess(List<Game> games) {
-                progress.setVisibility(View.GONE);
+                showSkeleton(false);
                 swipe.setRefreshing(false);
                 allGames = new ArrayList<>(games);
                 allGames.sort(Comparator.comparing(GamesActivity::sortKey));
                 buildTabs();
+                emptyView.setVisibility(allGames.isEmpty() ? View.VISIBLE : View.GONE);
             }
 
             @Override
             public void onError(Exception e) {
-                progress.setVisibility(View.GONE);
+                showSkeleton(false);
                 swipe.setRefreshing(false);
                 // If we already have data, keep showing it; only show the error screen when empty.
                 if (allGames.isEmpty()) {
@@ -164,5 +171,34 @@ public class GamesActivity extends AppCompatActivity {
         String t = g.getTime() == null ? "" : g.getTime();
         if (d.length() != 8) return "~" + d + t; // malformed dates go to the end
         return d.substring(6, 8) + d.substring(3, 5) + d.substring(0, 2) + t;
+    }
+
+    private void showSkeleton(boolean show) {
+        skeleton.setVisibility(show ? View.VISIBLE : View.GONE);
+        skeletonTabs.setVisibility(show ? View.VISIBLE : View.GONE);
+        if (show) {
+            // Respect "remove animations" in system settings: placeholders stay static.
+            float scale = Settings.Global.getFloat(getContentResolver(),
+                    Settings.Global.ANIMATOR_DURATION_SCALE, 1f);
+            if (scale > 0f && pulse == null) {
+                pulse = ObjectAnimator.ofFloat(skeleton, View.ALPHA, 1f, 0.45f);
+                pulse.setDuration(900);
+                pulse.setRepeatMode(ObjectAnimator.REVERSE);
+                pulse.setRepeatCount(ObjectAnimator.INFINITE);
+                pulse.addUpdateListener(a ->
+                        skeletonTabs.setAlpha((float) a.getAnimatedValue()));
+            }
+            if (pulse != null && !pulse.isStarted()) pulse.start();
+        } else if (pulse != null) {
+            pulse.cancel();
+            skeleton.setAlpha(1f);
+            skeletonTabs.setAlpha(1f);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (pulse != null) pulse.cancel();
+        super.onDestroy();
     }
 }
