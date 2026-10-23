@@ -15,6 +15,13 @@
     <color name="bp_canal11">#007A46</color>
     <color name="bp_on_brand">#FFFFFF</color>
 
+    <color name="bp_header">#14251C</color>
+    <color name="bp_header_title">#D9E2DC</color>
+    <color name="bp_tab_unselected">#8A9A90</color>
+    <color name="bp_tab_selected">#3FAE6E</color>
+    <color name="bp_tab_indicator">#3FAE6E</color>
+    <color name="bp_skeleton">#2F3D35</color>
+
     <!-- Primary brand colors -->
     <color name="colorPrimary">#4CAF50</color>
     <color name="colorPrimaryVariant">#2E7D32</color>

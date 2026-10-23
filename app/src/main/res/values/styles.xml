@@ -11,9 +11,9 @@
         <item name="colorOutline">@color/bp_outline</item>
 
         <item name="android:colorBackground">@color/bp_background</item>
-        <item name="android:statusBarColor">@color/bp_background</item>
+        <item name="android:statusBarColor">@color/bp_header</item>
         <item name="android:navigationBarColor">@color/bp_background</item>
-        <item name="android:windowLightStatusBar">@bool/bp_light_bars</item>
+        <item name="android:windowLightStatusBar">false</item>
 
         <item name="bottomSheetDialogTheme">@style/ThemeOverlay.BP.BottomSheetDialog</item>
     </style>
@@ -22,7 +22,7 @@
         <item name="android:fontFamily">sans-serif-condensed</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">28sp</item>
-        <item name="android:textColor">@color/bp_on_surface</item>
+        <item name="android:textColor">@color/bp_header_title</item>
     </style>
 
     <style name="TextAppearance.BP.Tab" parent="TextAppearance.Material3.TitleSmall">

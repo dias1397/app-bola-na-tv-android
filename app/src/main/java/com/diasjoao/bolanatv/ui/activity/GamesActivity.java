@@ -6,15 +6,21 @@ import android.animation.ObjectAnimator;
 import android.provider.Settings;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.diasjoao.bolanatv.R;
 import com.diasjoao.bolanatv.model.Game;
+import com.diasjoao.bolanatv.ui.adapter.DayPagerAdapter;
 import com.diasjoao.bolanatv.ui.adapter.GamesAdapter;
 import com.diasjoao.bolanatv.util.GamesApi;
 import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,12 +34,14 @@ public class GamesActivity extends AppCompatActivity {
 
     private static final Locale PT = Locale.forLanguageTag("pt-PT");
 
-    private RecyclerView list;
     private TabLayout tabs;
-    private SwipeRefreshLayout swipe;
     private View skeleton, skeletonTabs, error, emptyView;
     private ObjectAnimator pulse;
-    private final GamesAdapter adapter = new GamesAdapter();
+
+    private ViewPager2 pager;
+    private DayPagerAdapter pagerAdapter;
+    private TabLayoutMediator mediator;
+    private final List<String> labels = new ArrayList<>();
 
     private List<Game> allGames = new ArrayList<>();
     private final List<String> dates = new ArrayList<>();
@@ -44,36 +52,46 @@ public class GamesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_games);
 
-        swipe = findViewById(R.id.swipe);
+        View header = findViewById(R.id.header);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.root), (v, insets) -> {
+            Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            header.setPadding(0, bars.top, 0, 0);   // header color extends behind the status bar
+            v.setPadding(0, 0, 0, bars.bottom);     // keep the list above the navigation bar
+            return insets;
+        });
+
         skeleton = findViewById(R.id.skeleton);
         skeletonTabs = findViewById(R.id.tabs_skeleton);
         emptyView = findViewById(R.id.empty);
         error = findViewById(R.id.error);
 
-        list = findViewById(R.id.list);
-        list.setLayoutManager(new LinearLayoutManager(this));
-        list.setAdapter(adapter);
-
-        adapter.setOnGameClick(game -> GameSheet.newInstance(game).show(getSupportFragmentManager(), "game"));
-
-        swipe.setColorSchemeResources(R.color.bp_accent);
-        swipe.setProgressBackgroundColorSchemeResource(R.color.bp_surface);
-        swipe.setOnRefreshListener(this::load);
         findViewById(R.id.retry).setOnClickListener(v -> load());
 
         tabs = findViewById(R.id.tabs);
-        tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        pager = findViewById(R.id.pager);
+        pagerAdapter = new DayPagerAdapter(
+                game -> GameSheet.newInstance(game).show(getSupportFragmentManager(), "game"),
+                this::load);
+        pager.setAdapter(pagerAdapter);
+        pager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                showDay(tab.getPosition());
+            public void onPageSelected(int position) {
+                if (position >= 0 && position < dates.size()) currentDate = dates.get(position);
             }
+        });
 
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) { }
+        tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override public void onTabSelected(TabLayout.Tab tab) { }
+            @Override public void onTabUnselected(TabLayout.Tab tab) { }
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-                list.scrollToPosition(0);
+                RecyclerView inner = (RecyclerView) pager.getChildAt(0);
+                RecyclerView.ViewHolder vh = inner.findViewHolderForAdapterPosition(tab.getPosition());
+                if (vh != null) {
+                    RecyclerView list = vh.itemView.findViewById(R.id.list);
+                    list.smoothScrollToPosition(0);
+                }
             }
         });
 
@@ -92,7 +110,7 @@ public class GamesActivity extends AppCompatActivity {
             @Override
             public void onSuccess(List<Game> games) {
                 showSkeleton(false);
-                swipe.setRefreshing(false);
+                stopRefreshing();
                 allGames = new ArrayList<>(games);
                 allGames.sort(Comparator.comparing(GamesActivity::sortKey));
                 buildTabs();
@@ -102,13 +120,24 @@ public class GamesActivity extends AppCompatActivity {
             @Override
             public void onError(Exception e) {
                 showSkeleton(false);
-                swipe.setRefreshing(false);
+                stopRefreshing();
                 // If we already have data, keep showing it; only show the error screen when empty.
                 if (allGames.isEmpty()) {
                     error.setVisibility(View.VISIBLE);
                 }
             }
         });
+    }
+
+    // Stops the pull-to-refresh spinner on every page.
+    private void stopRefreshing() {
+        RecyclerView inner = (RecyclerView) pager.getChildAt(0);
+        for (int i = 0; i < inner.getChildCount(); i++) {
+            View page = inner.getChildAt(i);
+            if (page instanceof SwipeRefreshLayout) {
+                ((SwipeRefreshLayout) page).setRefreshing(false);
+            }
+        }
     }
 
     private void buildTabs() {
@@ -124,42 +153,38 @@ public class GamesActivity extends AppCompatActivity {
         SimpleDateFormat dateFmt = new SimpleDateFormat("d MMM", PT);
         String today = parse.format(new Date());
 
+        List<List<Game>> perDay = new ArrayList<>();
+        labels.clear();
+        for (String d : dates) {
+            List<Game> day = new ArrayList<>();
+            for (Game g : allGames) {
+                if (d.equals(g.getDate())) day.add(g);
+            }
+            perDay.add(day);
+
+            String label = d; // fallback if the date can't be parsed
+            try {
+                Date date = parse.parse(d);
+                String name = d.equals(today)
+                        ? "Hoje"
+                        : capitalize(dayFmt.format(date).replace(".", ""));
+                label = name + "\n" + dateFmt.format(date).replace(".", "");
+            } catch (ParseException ignored) { }
+            labels.add(label);
+        }
+
         // Keep the same day after a refresh; otherwise today; otherwise the first day.
         int selected = dates.indexOf(currentDate);
         if (selected < 0) selected = dates.indexOf(today);
         if (selected < 0) selected = 0;
 
-        tabs.removeAllTabs();
-        for (String d : dates) {
-            String label = d; // fallback if the date can't be parsed
-            try {
-                Date date = parse.parse(d);
-                String day = d.equals(today)
-                        ? "Hoje"
-                        : capitalize(dayFmt.format(date).replace(".", ""));
-                label = day + "\n" + dateFmt.format(date).replace(".", "");
-            } catch (ParseException ignored) { }
-            tabs.addTab(tabs.newTab().setText(label), false);
-        }
+        pagerAdapter.submit(perDay);
+        if (mediator != null) mediator.detach();
+        mediator = new TabLayoutMediator(tabs, pager, (tab, pos) -> tab.setText(labels.get(pos)));
+        mediator.attach();
 
         tabs.setVisibility(dates.isEmpty() ? View.GONE : View.VISIBLE);
-        if (!dates.isEmpty()) {
-            TabLayout.Tab tab = tabs.getTabAt(selected);
-            if (tab != null) tab.select();
-            showDay(selected);
-        }
-    }
-
-    private void showDay(int position) {
-        if (position < 0 || position >= dates.size()) return;
-        currentDate = dates.get(position);
-
-        List<Game> day = new ArrayList<>();
-        for (Game g : allGames) {
-            if (currentDate.equals(g.getDate())) day.add(g);
-        }
-        adapter.submit(day);
-        list.scrollToPosition(0);
+        if (!dates.isEmpty()) pager.setCurrentItem(selected, false);
     }
 
     private static String capitalize(String s) {

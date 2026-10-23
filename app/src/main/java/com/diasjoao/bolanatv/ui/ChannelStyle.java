@@ -30,7 +30,7 @@ public final class ChannelStyle {
     // Edit colors here. Format: keys, bg (light theme), bg (dark theme), text (light), text (dark).
     private static final Brand[] BRANDS = {
             new Brand(new String[]{"sporttv"},          0xFFFFD500, 0xFFFFD500, INK,   INK),
-            new Brand(new String[]{"dazn"},             INK,        0xFFE6E6E6, WHITE, INK),
+            new Brand(new String[]{"dazn"},             INK,        0xFFBDBDBD, WHITE, INK),
             new Brand(new String[]{"canal11"},          0xFF00FF78, 0xFF00D468, INK, INK),
             new Brand(new String[]{"sportingtv"},       0xFF00783A, 0xFF1E7B4A, WHITE, WHITE),
             new Brand(new String[]{"btv", "benficatv"}, 0xFFD0121B, 0xFFBF2B31, WHITE, WHITE),
