@@ -8,14 +8,6 @@
     <color name="bp_accent">#266B43</color>
     <color name="bp_on_accent">#F4F5F0</color>
 
-    <!-- Channel brands -->
-    <color name="bp_sporttv">#FFD500</color>
-    <color name="bp_on_sportv">#000000</color>
-    <color name="bp_dazn">#242424</color>
-    <color name="bp_on_dazn">#FFFFFF</color>
-    <color name="bp_canal11">#007A46</color>
-    <color name="bp_on_brand">#FFFFFF</color>
-
     <color name="bp_header">#1E4D33</color>
     <color name="bp_header_title">#FFFFFF</color>
     <color name="bp_tab_unselected">#B7D1C0</color>
@@ -23,28 +15,6 @@
     <color name="bp_tab_indicator">#8FE0AE</color>
     <color name="bp_skeleton">#DCE1D7</color>
 
-    <!-- Primary brand colors -->
     <color name="colorPrimary">#4CAF50</color>
     <color name="colorPrimaryVariant">#388E3C</color>
-    <color name="colorSecondary">#FF9800</color>
-    <color name="colorSecondaryVariant">#F57C00</color>
-
-    <!-- Background, Surface, and Error colors -->
-    <color name="colorBackground">#F7F9FC</color>
-    <color name="colorSurface">#FFFFFF</color>
-    <color name="colorError">#D32F2F</color>
-
-    <!-- Text and icon colors -->
-    <color name="colorOnPrimary">#FFFFFF</color>
-    <color name="colorOnSecondary">#000000</color>
-    <color name="colorOnSurface">#212121</color>
-
-    <color name="loadingScreenColor">#43a047</color>
-
-    <color name="bp_fb_1">#7B4FA0</color>
-    <color name="bp_fb_2">#23766F</color>
-    <color name="bp_fb_3">#9A5A22</color>
-    <color name="bp_fb_4">#5F7A2E</color>
-    <color name="bp_fb_5">#A0457A</color>
-    <color name="bp_fb_6">#3A67B5</color>
 </resources>

@@ -54,7 +54,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Onde ver"
+            android:text="@string/onde_ver"
             android:textColor="@color/bp_on_surface_muted"
             android:textSize="14sp" />
 
@@ -83,7 +83,7 @@
         android:layout_width="match_parent"
         android:layout_height="52dp"
         android:layout_marginTop="20dp"
-        android:text="Adicionar ao calendário"
+        android:text="@string/adicionar_ao_calendario"
         android:textColor="@color/bp_on_accent"
         android:textSize="16sp"
         app:backgroundTint="@color/bp_accent"

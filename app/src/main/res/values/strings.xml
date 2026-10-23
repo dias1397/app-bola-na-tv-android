@@ -7,21 +7,10 @@
         <item>bolanatv.appsuporte@gmail.com</item>
     </string-array>
 
-    <string name="noConnection">Sem conexão</string>
-    <string name="retry">Tentar novamente</string>
-    <string name="loading">Carregando…</string>
-
     <string name="menu_rate">Gostou da app?</string>
     <string name="menu_comment">Enviar feedback</string>
     <string name="menu_about">Sobre</string>
     <string name="menu_privacy">Privacidade</string>
-
-    <string name="time_placeholder">HH:mm</string>
-    <string name="competition_placeholder">Competition</string>
-    <string name="home_team_placeholder">Home Team</string>
-    <string name="away_team_placeholder">Away Team</string>
-    <string name="channel_placeholder">Channel</string>
-    <string name="live">Em\nDireto</string>
 
     <string name="version">Versão</string>
     <string name="last_update">Atualizado em</string>
@@ -65,4 +54,10 @@
     <string name="logo_content_description">Logo</string>
     <string name="nav_header_content_description">Navigation header</string>
     <string name="bell_content_description">Bell notification</string>
+    <string name="sem_jogos_de_momento">Sem jogos de momento</string>
+    <string name="nao_foi_possivel_carregar">Não foi possível carregar</string>
+    <string name="verifica_a_ligacao_internet">Verifica a ligação à internet.</string>
+    <string name="tentar_novamente">Tentar novamente</string>
+    <string name="onde_ver">Onde ver</string>
+    <string name="adicionar_ao_calendario">Adicionar ao calendário</string>
 </resources>

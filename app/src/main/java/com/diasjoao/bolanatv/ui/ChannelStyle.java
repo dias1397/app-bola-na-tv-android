@@ -14,17 +14,10 @@ public final class ChannelStyle {
     private static final int WHITE = 0xFFFFFFFF;
     private static final int INK = 0xFF111111;
 
-    private static final class Brand {
-        final String[] keys;   // matched with startsWith on the normalized channel name
-        final int bgLight, bgDark, textLight, textDark;
-
-        Brand(String[] keys, int bgLight, int bgDark, int textLight, int textDark) {
-            this.keys = keys;
-            this.bgLight = bgLight;
-            this.bgDark = bgDark;
-            this.textLight = textLight;
-            this.textDark = textDark;
-        }
+    /**
+     * @param keys matched with startsWith on the normalized channel name
+     */
+    private record Brand(String[] keys, int bgLight, int bgDark, int textLight, int textDark) {
     }
 
     // Edit colors here. Format: keys, bg (light theme), bg (dark theme), text (light), text (dark).

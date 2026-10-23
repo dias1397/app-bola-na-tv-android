@@ -37,7 +37,6 @@
             android:layout_height="wrap_content"
             android:text="@string/app_name"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
-            android:textColor="@color/colorOnSecondary"
             app:fontFamily="sans-serif-medium" />
 
         <View

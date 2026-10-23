@@ -38,7 +38,7 @@ public final class TimeHints {
 
         if (m > 60 || m < -30) return null;
         if (m >= -5 && m <= 5) return "Agora";
-        if (m > 5) return "Em " + (((m + 4) / 5) * 5) + " min";   // rounded up to 5
-        return "Há " + (((-m) / 5) * 5) + " min";                  // rounded down to 5
+        if (m > 5) return "Em " + m + " min";   // rounded up to 5
+        return "Há " + (-m) + " min";                  // rounded down to 5
     }
 }
