@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.diasjoao.bolanatv.R;
 import com.diasjoao.bolanatv.model.Game;
 import com.diasjoao.bolanatv.ui.ChannelStyle;
+import com.diasjoao.bolanatv.util.TimeHints;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,12 +60,21 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.VH> {
         h.away.setText(g.getAway());
         h.channel.setText(g.getChannel());
 
+        String hint = TimeHints.hintFor(g);
+        if (hint == null) {
+            h.hint.setVisibility(View.GONE);
+        } else {
+            h.hint.setText(hint);
+            h.hint.setVisibility(View.VISIBLE);
+        }
+
         ChannelStyle style = ChannelStyle.of(h.itemView.getContext(), g.getChannel());
         ViewCompat.setBackgroundTintList(h.channel, ColorStateList.valueOf(style.background));
         h.channel.setTextColor(style.text);
 
-        h.itemView.setContentDescription(g.getTime() + ". " + g.getHome() + " contra "
-                + g.getAway() + ". " + g.getCompetition() + ". Canal " + g.getChannel() + ".");
+        h.itemView.setContentDescription(g.getTime() + ". " + g.getHome() + " contra " + g.getAway()
+                + ". " + g.getCompetition() + ". Canal " + g.getChannel() + "."
+                + (hint != null ? " " + hint + "." : ""));
 
         h.itemView.setOnClickListener(v -> {
             if (onGameClick != null) onGameClick.onClick(g);
@@ -77,15 +87,21 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.VH> {
     }
 
     static class VH extends RecyclerView.ViewHolder {
-        final TextView time, competition, home, away, channel;
+        final TextView time, hint, competition, home, away, channel;
 
         VH(@NonNull View v) {
             super(v);
             time = v.findViewById(R.id.time);
+            hint = v.findViewById(R.id.hint);
             competition = v.findViewById(R.id.competition);
             home = v.findViewById(R.id.home);
             away = v.findViewById(R.id.away);
             channel = v.findViewById(R.id.channel);
         }
+    }
+
+    // Re-binds visible rows so the time hints update. Does not touch the scroll position.
+    public void refresh() {
+        notifyDataSetChanged();
     }
 }

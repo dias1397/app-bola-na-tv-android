@@ -66,4 +66,17 @@ public class DayPagerAdapter extends RecyclerView.Adapter<DayPagerAdapter.PageVH
             swipe.setOnRefreshListener(refresh::run);
         }
     }
+
+    public void refreshHints() {
+        if (!days.isEmpty()) notifyItemRangeChanged(0, days.size(), "hints");
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull PageVH h, int position, @NonNull List<Object> payloads) {
+        if (payloads.isEmpty()) {
+            onBindViewHolder(h, position);
+        } else {
+            h.adapter.refresh();
+        }
+    }
 }

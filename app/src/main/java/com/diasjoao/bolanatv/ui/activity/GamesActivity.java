@@ -1,6 +1,8 @@
 package com.diasjoao.bolanatv.ui.activity;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.animation.ObjectAnimator;
 import android.provider.Settings;
@@ -46,6 +48,16 @@ public class GamesActivity extends AppCompatActivity {
     private List<Game> allGames = new ArrayList<>();
     private final List<String> dates = new ArrayList<>();
     private String currentDate;
+
+    private final Handler handler = new Handler(Looper.getMainLooper());
+    private final Runnable tick = new Runnable() {
+        @Override
+        public void run() {
+            if (pagerAdapter != null) pagerAdapter.refreshHints();
+            // Run again right after the next minute starts.
+            handler.postDelayed(this, 60_000L - (System.currentTimeMillis() % 60_000L) + 500L);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -225,5 +237,17 @@ public class GamesActivity extends AppCompatActivity {
     protected void onDestroy() {
         if (pulse != null) pulse.cancel();
         super.onDestroy();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        handler.post(tick);
+    }
+
+    @Override
+    protected void onStop() {
+        handler.removeCallbacks(tick);
+        super.onStop();
     }
 }
