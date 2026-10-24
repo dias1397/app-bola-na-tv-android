@@ -48,4 +48,8 @@
         <item name="cornerSizeBottomLeft">0dp</item>
         <item name="cornerSizeBottomRight">0dp</item>
     </style>
+
+    <style name="ThemeOverlay.BP.Toolbar" parent="">
+        <item name="colorControlNormal">@color/bp_header_title</item>
+    </style>
 </resources>

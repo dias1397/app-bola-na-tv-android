@@ -19,6 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/bp_header"
+            android:theme="@style/ThemeOverlay.BP.Toolbar"
             app:title="Bola na TV"
             app:titleMarginStart="16dp"
             app:titleTextAppearance="@style/TextAppearance.BP.Title" />
@@ -173,4 +174,10 @@
                 app:backgroundTint="@color/bp_accent" />
         </LinearLayout>
     </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/ad_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bp_background" />
 </LinearLayout>

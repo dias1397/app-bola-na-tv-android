@@ -6,6 +6,7 @@ import android.os.Looper;
 import android.view.View;
 import android.animation.ObjectAnimator;
 import android.provider.Settings;
+import android.content.pm.PackageManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -15,6 +16,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.util.DisplayMetrics;
+import android.widget.FrameLayout;
+
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.ump.ConsentInformation;
+import com.google.android.ump.ConsentRequestParameters;
+import com.google.android.ump.UserMessagingPlatform;
+
+import java.util.concurrent.atomic.AtomicBoolean;
 import com.diasjoao.bolanatv.R;
 import com.diasjoao.bolanatv.model.Game;
 import com.diasjoao.bolanatv.ui.adapter.DayPagerAdapter;
@@ -37,6 +54,11 @@ public class GamesActivity extends AppCompatActivity {
     private TabLayout tabs;
     private View skeleton, skeletonTabs, error, emptyView;
     private ObjectAnimator pulse;
+    private MaterialToolbar toolbar;
+    private FrameLayout adContainer;
+    private AdView adBannerView;
+    private ConsentInformation consent;
+    private final AtomicBoolean adsStarted = new AtomicBoolean(false);
 
     private ViewPager2 pager;
     private DayPagerAdapter pagerAdapter;
@@ -59,6 +81,7 @@ public class GamesActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ThemeSettings.applySaved(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_games);
 
@@ -69,6 +92,21 @@ public class GamesActivity extends AppCompatActivity {
             v.setPadding(0, 0, 0, bars.bottom);     // keep the list above the navigation bar
             return insets;
         });
+        toolbar = findViewById(R.id.toolbar);
+        toolbar.inflateMenu(R.menu.main_menu);
+        toolbar.setOnMenuItemClickListener(item -> {
+            int id = item.getItemId();
+            if (id == R.id.action_theme) { showThemeDialog(); return true; }
+            if (id == R.id.action_privacy) {
+                UserMessagingPlatform.showPrivacyOptionsForm(this, formError -> { });
+                return true;
+            }
+            if (id == R.id.action_about) { showAbout(); return true; }
+            return false;
+        });
+
+        adContainer = findViewById(R.id.ad_container);
+        setupAds();
 
         skeleton = findViewById(R.id.skeleton);
         skeletonTabs = findViewById(R.id.tabs_skeleton);
@@ -231,9 +269,89 @@ public class GamesActivity extends AppCompatActivity {
         }
     }
 
+    private void setupAds() {
+        consent = UserMessagingPlatform.getConsentInformation(this);
+        consent.requestConsentInfoUpdate(this, new ConsentRequestParameters.Builder().build(),
+                () -> UserMessagingPlatform.loadAndShowConsentFormIfRequired(this, formError -> {
+                    updatePrivacyItem();
+                    startAds();
+                }),
+                requestError -> {
+                    updatePrivacyItem();
+                    startAds();
+                });
+
+        startAds(); // consent saved from a previous session may already allow ads
+    }
+
+    private void startAds() {
+        if (isDestroyed() || !consent.canRequestAds()
+                || !adsStarted.compareAndSet(false, true)) return;
+
+        new Thread(() -> MobileAds.initialize(this,
+                status -> runOnUiThread(this::loadBanner))).start();
+    }
+
+    private void loadBanner() {
+        if (isDestroyed()) return;
+
+        DisplayMetrics dm = getResources().getDisplayMetrics();
+        adBannerView = new AdView(this);
+        adBannerView.setAdUnitId(getString(R.string.admob_banner_main)); // same banner id as before
+        adBannerView.setAdSize(AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(
+                this, (int) (dm.widthPixels / dm.density)));
+        adBannerView.setAdListener(new AdListener() {
+            @Override
+            public void onAdFailedToLoad(LoadAdError error) {
+                adContainer.removeAllViews(); // no blank band when nothing loads
+            }
+        });
+
+        adContainer.removeAllViews();
+        adContainer.addView(adBannerView);
+        adBannerView.loadAd(new AdRequest.Builder().build());
+    }
+
+    private void updatePrivacyItem() {
+        if (toolbar == null || consent == null) return;
+        toolbar.getMenu().findItem(R.id.action_privacy).setVisible(
+                consent.getPrivacyOptionsRequirementStatus()
+                        == ConsentInformation.PrivacyOptionsRequirementStatus.REQUIRED);
+    }
+
+    private void showThemeDialog() {
+        String[] options = {"Seguir o sistema", "Claro", "Escuro"};
+        new MaterialAlertDialogBuilder(this)
+                .setTitle("Tema")
+                .setSingleChoiceItems(options, ThemeSettings.get(this), (dialog, which) -> {
+                    ThemeSettings.set(this, which);
+                    dialog.dismiss();
+                })
+                .setNegativeButton("Cancelar", null)
+                .show();
+    }
+
+    private void showAbout() {
+        String version = "";
+        try {
+            version = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+        } catch (PackageManager.NameNotFoundException ignored) { }
+        new MaterialAlertDialogBuilder(this)
+                .setTitle("Bola na TV")
+                .setMessage("Versão " + version
+                        + "\n\nHorários e canais sujeitos a alteração pelas emissoras.")
+                .setPositiveButton("OK", null)
+                .show();
+    }
+
     @Override
     protected void onDestroy() {
         if (pulse != null) pulse.cancel();
+        if (adBannerView != null) {
+            adContainer.removeAllViews();
+            adBannerView.destroy();
+            adBannerView = null;
+        }
         super.onDestroy();
     }
 
@@ -247,5 +365,17 @@ public class GamesActivity extends AppCompatActivity {
     protected void onStop() {
         handler.removeCallbacks(tick);
         super.onStop();
+    }
+
+    @Override
+    protected void onPause() {
+        if (adBannerView != null) adBannerView.pause();
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (adBannerView != null) adBannerView.resume();
     }
 }
