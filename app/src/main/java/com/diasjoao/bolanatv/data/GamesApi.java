@@ -1,4 +1,4 @@
-package com.diasjoao.bolanatv.util;
+package com.diasjoao.bolanatv.data;
 
 import android.content.Context;
 
@@ -7,7 +7,6 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.diasjoao.bolanatv.model.Game;
 
 import org.json.JSONArray;
 import org.json.JSONException;

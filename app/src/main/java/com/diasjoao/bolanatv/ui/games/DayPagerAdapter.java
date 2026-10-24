@@ -1,4 +1,4 @@
-package com.diasjoao.bolanatv.ui.adapter;
+package com.diasjoao.bolanatv.ui.games;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.diasjoao.bolanatv.R;
-import com.diasjoao.bolanatv.model.Game;
+import com.diasjoao.bolanatv.data.Game;
 
 import java.util.ArrayList;
 import java.util.List;

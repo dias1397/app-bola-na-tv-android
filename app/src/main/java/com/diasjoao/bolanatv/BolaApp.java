@@ -1,6 +1,8 @@
-package com.diasjoao.bolanatv.ui.activity;
+package com.diasjoao.bolanatv;
 
 import android.app.Application;
+
+import com.diasjoao.bolanatv.settings.ThemeSettings;
 
 public class BolaApp extends Application {
 

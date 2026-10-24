@@ -1,4 +1,4 @@
-package com.diasjoao.bolanatv.ui.adapter;
+package com.diasjoao.bolanatv.ui.games;
 
 import android.content.res.ColorStateList;
 import android.view.LayoutInflater;
@@ -11,9 +11,7 @@ import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.diasjoao.bolanatv.R;
-import com.diasjoao.bolanatv.model.Game;
-import com.diasjoao.bolanatv.ui.ChannelStyle;
-import com.diasjoao.bolanatv.util.TimeHints;
+import com.diasjoao.bolanatv.data.Game;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,10 +34,6 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.VH> {
         items.clear();
         items.addAll(newItems);
         notifyDataSetChanged(); // temporary; we'll switch to DiffUtil later
-    }
-
-    public boolean isEmpty() {
-        return items.isEmpty();
     }
 
     @NonNull

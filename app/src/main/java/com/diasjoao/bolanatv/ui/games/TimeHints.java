@@ -1,7 +1,7 @@
-package com.diasjoao.bolanatv.util;
+package com.diasjoao.bolanatv.ui.games;
 
 
-import com.diasjoao.bolanatv.model.Game;
+import com.diasjoao.bolanatv.data.Game;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

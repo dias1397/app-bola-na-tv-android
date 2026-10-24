@@ -118,12 +118,12 @@
             android:paddingVertical="8dp"
             android:visibility="gone">
 
-            <include layout="@layout/item_skeleton" />
-            <include layout="@layout/item_skeleton" />
-            <include layout="@layout/item_skeleton" />
-            <include layout="@layout/item_skeleton" />
-            <include layout="@layout/item_skeleton" />
-            <include layout="@layout/item_skeleton" />
+            <include layout="@layout/item_game_skeleton" />
+            <include layout="@layout/item_game_skeleton" />
+            <include layout="@layout/item_game_skeleton" />
+            <include layout="@layout/item_game_skeleton" />
+            <include layout="@layout/item_game_skeleton" />
+            <include layout="@layout/item_game_skeleton" />
         </LinearLayout>
 
         <TextView

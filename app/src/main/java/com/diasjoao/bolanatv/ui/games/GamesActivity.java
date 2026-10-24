@@ -1,12 +1,14 @@
-package com.diasjoao.bolanatv.ui.activity;
+package com.diasjoao.bolanatv.ui.games;
 
+import android.animation.ObjectAnimator;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.view.View;
-import android.animation.ObjectAnimator;
 import android.provider.Settings;
-import android.content.pm.PackageManager;
+import android.util.DisplayMetrics;
+import android.view.View;
+import android.widget.FrameLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -16,9 +18,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.util.DisplayMetrics;
-import android.widget.FrameLayout;
-
+import com.diasjoao.bolanatv.R;
+import com.diasjoao.bolanatv.data.Game;
+import com.diasjoao.bolanatv.data.GamesApi;
+import com.diasjoao.bolanatv.settings.ThemeSettings;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
@@ -27,25 +30,20 @@ import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.android.ump.ConsentInformation;
 import com.google.android.ump.ConsentRequestParameters;
 import com.google.android.ump.UserMessagingPlatform;
-
-import java.util.concurrent.atomic.AtomicBoolean;
-import com.diasjoao.bolanatv.R;
-import com.diasjoao.bolanatv.model.Game;
-import com.diasjoao.bolanatv.ui.adapter.DayPagerAdapter;
-import com.diasjoao.bolanatv.util.GamesApi;
-import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.Locale;
 import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class GamesActivity extends AppCompatActivity {
 

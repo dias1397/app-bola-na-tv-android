@@ -1,4 +1,4 @@
-package com.diasjoao.bolanatv.ui.activity;
+package com.diasjoao.bolanatv.settings;
 
 import android.content.Context;
 

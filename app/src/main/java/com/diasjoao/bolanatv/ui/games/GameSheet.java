@@ -1,4 +1,4 @@
-package com.diasjoao.bolanatv.ui.activity;
+package com.diasjoao.bolanatv.ui.games;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -16,8 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
 
 import com.diasjoao.bolanatv.R;
-import com.diasjoao.bolanatv.model.Game;
-import com.diasjoao.bolanatv.ui.ChannelStyle;
+import com.diasjoao.bolanatv.data.Game;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.text.ParseException;

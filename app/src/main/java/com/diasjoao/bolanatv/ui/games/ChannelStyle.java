@@ -1,4 +1,4 @@
-package com.diasjoao.bolanatv.ui;
+package com.diasjoao.bolanatv.ui.games;
 
 import android.content.Context;
 import android.content.res.Configuration;
