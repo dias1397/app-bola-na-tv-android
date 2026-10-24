@@ -16,7 +16,4 @@
     <color name="bp_tab_selected">#3FAE6E</color>
     <color name="bp_tab_indicator">#3FAE6E</color>
     <color name="bp_skeleton">#2F3D35</color>
-
-    <color name="colorPrimary">#4CAF50</color>
-    <color name="colorPrimaryVariant">#2E7D32</color>
 </resources>

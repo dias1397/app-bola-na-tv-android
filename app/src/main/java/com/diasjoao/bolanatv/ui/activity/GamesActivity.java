@@ -81,7 +81,7 @@ public class GamesActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        ThemeSettings.applySaved(this);
+        //ThemeSettings.applySaved(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_games);
 
@@ -337,9 +337,9 @@ public class GamesActivity extends AppCompatActivity {
             version = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
         } catch (PackageManager.NameNotFoundException ignored) { }
         new MaterialAlertDialogBuilder(this)
-                .setTitle("Bola na TV")
+                .setTitle(getString(R.string.app_name))
                 .setMessage("Versão " + version
-                        + "\n\nHorários e canais sujeitos a alteração pelas emissoras.")
+                        + "\n\n" + getString(R.string.app_description))
                 .setPositiveButton("OK", null)
                 .show();
     }

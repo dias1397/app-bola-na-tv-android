@@ -9,6 +9,7 @@
     <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
 
     <application
+        android:name=".ui.activity.BolaApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -27,12 +28,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.activity.AboutActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.activity.PrivacyActivity"
-            android:exported="false" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
