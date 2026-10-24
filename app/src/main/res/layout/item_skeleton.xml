@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="8dp"
+    android:layout_marginBottom="12dp"
     app:cardBackgroundColor="@color/bp_surface"
     app:cardCornerRadius="14dp"
     app:cardElevation="0dp"
@@ -13,48 +13,63 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:minHeight="68dp"
-        android:orientation="horizontal"
-        android:paddingStart="14dp"
-        android:paddingTop="10dp"
-        android:paddingEnd="14dp"
-        android:paddingBottom="10dp">
+        android:orientation="vertical">
 
-        <View
-            android:layout_width="48dp"
-            android:layout_height="22dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/bg_skeleton" />
-
-        <LinearLayout
-            android:layout_width="0dp"
+        <FrameLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <View
-                android:layout_width="80dp"
-                android:layout_height="10dp"
-                android:background="@drawable/bg_skeleton" />
-
-            <View
-                android:layout_width="140dp"
-                android:layout_height="14dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/bg_skeleton" />
+            android:background="@color/bp_band"
+            android:paddingStart="14dp"
+            android:paddingTop="9dp"
+            android:paddingEnd="14dp"
+            android:paddingBottom="9dp">
 
             <View
                 android:layout_width="110dp"
-                android:layout_height="14dp"
-                android:layout_marginTop="6dp"
+                android:layout_height="10dp"
+                android:background="@drawable/bg_skeleton" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:minHeight="60dp"
+            android:orientation="horizontal"
+            android:paddingStart="14dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="14dp"
+            android:paddingBottom="10dp">
+
+            <View
+                android:layout_width="48dp"
+                android:layout_height="22dp"
+                android:layout_marginEnd="26dp"
+                android:background="@drawable/bg_skeleton" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="140dp"
+                    android:layout_height="14dp"
+                    android:background="@drawable/bg_skeleton" />
+
+                <View
+                    android:layout_width="110dp"
+                    android:layout_height="14dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_skeleton" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="80dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="10dp"
                 android:background="@drawable/bg_skeleton" />
         </LinearLayout>
-
-        <View
-            android:layout_width="80dp"
-            android:layout_height="32dp"
-            android:layout_marginStart="10dp"
-            android:background="@drawable/bg_skeleton" />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

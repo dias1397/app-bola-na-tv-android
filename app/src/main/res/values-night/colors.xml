@@ -7,6 +7,8 @@
     <color name="bp_on_surface_muted">#8A9A90</color>
     <color name="bp_accent">#3FAE6E</color>
     <color name="bp_on_accent">#07130C</color>
+    <color name="bp_band">#1F2B24</color>
+    <color name="bp_band_text">#B4C2B9</color>
 
     <color name="bp_header">#14251C</color>
     <color name="bp_header_title">#D9E2DC</color>
