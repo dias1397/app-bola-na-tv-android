@@ -23,9 +23,13 @@ android {
         resValue("string", "api_url_bola_na_tv", appProperties['api_url_bola_na_tv'])
     }
     buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        buildTypes {
+            release {
+                minifyEnabled true
+                shrinkResources true
+                proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
+                        'proguard-rules.pro'
+            }
         }
     }
     compileOptions {
