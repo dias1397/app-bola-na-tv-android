@@ -101,7 +101,7 @@ public class GameSheet extends BottomSheetDialogFragment {
                                String date, String time) {
         long start = kickoffMillis(date, time);
         if (start < 0) {
-            Toast.makeText(requireContext(), "Data inválida", Toast.LENGTH_SHORT).show();
+            Toast.makeText(requireContext(), getString(R.string.toast_invalid_date), Toast.LENGTH_SHORT).show();
             return;
         }
         Intent intent = new Intent(Intent.ACTION_INSERT)
@@ -114,7 +114,7 @@ public class GameSheet extends BottomSheetDialogFragment {
             startActivity(intent);
             dismiss();
         } catch (ActivityNotFoundException e) {
-            Toast.makeText(requireContext(), "Sem aplicação de calendário",
+            Toast.makeText(requireContext(), getString(R.string.toast_no_calendar),
                     Toast.LENGTH_SHORT).show();
         }
     }

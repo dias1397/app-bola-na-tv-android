@@ -7,6 +7,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.diasjoao.bolanatv.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -17,9 +18,9 @@ import java.util.List;
 
 public class GamesApi {
 
-    private static final String URL = "https://bola-na-tv-api.vercel.app/";
 
     private static GamesApi instance;
+    private final String URL;
     private final RequestQueue queue;
 
     public interface Callback {
@@ -28,6 +29,7 @@ public class GamesApi {
     }
 
     private GamesApi(Context context) {
+        URL = context.getString(R.string.api_url_bola_na_tv);
         queue = Volley.newRequestQueue(context.getApplicationContext());
     }
 

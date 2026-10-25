@@ -1,5 +1,6 @@
 package com.diasjoao.bolanatv.ui.games;
 
+import android.content.Context;
 import android.content.res.ColorStateList;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,6 +47,7 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.VH> {
 
     @Override
     public void onBindViewHolder(@NonNull VH h, int position) {
+        Context c = h.itemView.getContext();
         Game g = items.get(position);
 
         h.time.setText(g.getTime());
@@ -54,7 +56,7 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.VH> {
         h.away.setText(g.getAway());
         h.channel.setText(g.getChannel());
 
-        String hint = TimeHints.hintFor(g);
+        String hint = TimeHints.hintFor(c, g);
         if (hint == null) {
             h.hint.setVisibility(View.GONE);
         } else {
@@ -66,9 +68,10 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.VH> {
         ViewCompat.setBackgroundTintList(h.channel, ColorStateList.valueOf(style.background));
         h.channel.setTextColor(style.text);
 
-        h.itemView.setContentDescription(g.getTime() + ". " + g.getHome() + " contra " + g.getAway()
-                + ". " + g.getCompetition() + ". Canal " + g.getChannel() + "."
-                + (hint != null ? " " + hint + "." : ""));
+        String description = c.getString(R.string.row_description,
+                g.getTime(), g.getHome(), g.getAway(), g.getCompetition(), g.getChannel());
+        if (hint != null) description += " " + hint + ".";
+        h.itemView.setContentDescription(description);
 
         h.itemView.setOnClickListener(v -> {
             if (onGameClick != null) onGameClick.onClick(g);

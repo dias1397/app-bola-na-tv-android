@@ -20,7 +20,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/bp_header"
             android:theme="@style/ThemeOverlay.BP.Toolbar"
-            app:title="Bola na TV"
+            app:title="@string/app_name"
             app:titleMarginStart="16dp"
             app:titleTextAppearance="@style/TextAppearance.BP.Title" />
 
@@ -134,7 +134,7 @@
             android:gravity="center"
             android:lineSpacingMultiplier="1.2"
             android:padding="32dp"
-            android:text="@string/sem_jogos_de_momento"
+            android:text="@string/empty_games"
             android:textColor="@color/bp_on_surface_muted"
             android:textSize="16sp"
             android:visibility="gone" />
@@ -152,7 +152,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/nao_foi_possivel_carregar"
+                android:text="@string/error_title"
                 android:textColor="@color/bp_on_surface"
                 android:textSize="16sp" />
 
@@ -160,7 +160,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="@string/verifica_a_ligacao_internet"
+                android:text="@string/error_hint"
                 android:textColor="@color/bp_on_surface_muted"
                 android:textSize="14sp" />
 
@@ -169,7 +169,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/tentar_novamente"
+                android:text="@string/error_retry"
                 android:textColor="@color/bp_on_accent"
                 app:backgroundTint="@color/bp_accent" />
         </LinearLayout>

@@ -9,8 +9,6 @@
 
     <string name="menu_rate">Gostou da app?</string>
     <string name="menu_comment">Enviar feedback</string>
-    <string name="menu_about">Sobre</string>
-    <string name="menu_privacy">Privacidade</string>
 
     <string name="version">Versão</string>
     <string name="last_update">Atualizado em</string>
@@ -60,4 +58,31 @@
     <string name="tentar_novamente">Tentar novamente</string>
     <string name="onde_ver">Onde ver</string>
     <string name="adicionar_ao_calendario">Adicionar ao calendário</string>
+
+    <string name="tab_today">Hoje</string>
+
+    <string name="menu_theme">Tema</string>
+    <string name="menu_privacy">Opções de privacidade</string>
+    <string name="menu_about">Sobre</string>
+    <string name="theme_system">Seguir o sistema</string>
+    <string name="theme_light">Claro</string>
+    <string name="theme_dark">Escuro</string>
+    <string name="action_cancel">Cancelar</string>
+    <string name="action_ok">OK</string>
+    <string name="about_version">Versão %1$s</string>
+
+    <string name="hint_now">Agora</string>
+    <string name="hint_in_minutes">Em %1$d min</string>
+    <string name="hint_minutes_ago">Há %1$d min</string>
+    <string name="row_description">%1$s. %2$s contra %3$s. %4$s. Canal %5$s.</string>
+
+    <string name="empty_games">Sem jogos de momento</string>
+    <string name="error_title">Não foi possível carregar</string>
+    <string name="error_hint">Verifica a ligação à internet.</string>
+    <string name="error_retry">Tentar novamente</string>
+
+    <string name="sheet_where">Onde ver</string>
+    <string name="sheet_add_calendar">Adicionar ao calendário</string>
+    <string name="toast_invalid_date">Data inválida</string>
+    <string name="toast_no_calendar">Sem aplicação de calendário</string>
 </resources>
