@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches: ['feature/**', 'release/**', main]
+  pull_request:
+    branches: [main, 'release/**']
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - uses: gradle/actions/setup-gradle@v6
+
+      - name: Make the Gradle wrapper executable
+        run: chmod +x ./gradlew
+
+      - name: Decode app.properties file
+        env:
+          SECRETS_PROPERTIES: ${{ secrets.PROPERTIES_FILE }}
+        run: echo -n "$SECRETS_PROPERTIES" | base64 -d > app/src/main/assets/app.properties
+
+      - name: Lint, unit tests and debug build
+        run: ./gradlew lintDebug testDebugUnitTest assembleDebug
+
+      - name: Upload reports when the build fails
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reports
+          path: |
+            app/build/reports/
+          retention-days: 7

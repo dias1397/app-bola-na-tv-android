@@ -3,6 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/action_channels"
+        android:title="@string/menu_channels"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/action_theme"
         android:title="@string/menu_theme"
         app:showAsAction="never" />

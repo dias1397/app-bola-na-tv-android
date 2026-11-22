@@ -1,6 +1,7 @@
 package com.diasjoao.bolanatv.ui.games;
 
 import android.animation.ObjectAnimator;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,7 +21,9 @@ import com.diasjoao.bolanatv.R;
 import com.diasjoao.bolanatv.ads.AdsManager;
 import com.diasjoao.bolanatv.data.Game;
 import com.diasjoao.bolanatv.data.GamesApi;
+import com.diasjoao.bolanatv.settings.ChannelSettings;
 import com.diasjoao.bolanatv.settings.ThemeSettings;
+import com.diasjoao.bolanatv.ui.channels.ChannelsActivity;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.tabs.TabLayout;
@@ -98,6 +101,10 @@ public class GamesActivity extends AppCompatActivity {
         toolbar.inflateMenu(R.menu.main_menu);
         toolbar.setOnMenuItemClickListener(item -> {
             int id = item.getItemId();
+            if (id == R.id.action_channels) {
+                startActivity(new Intent(this, ChannelsActivity.class));
+                return true;
+            }
             if (id == R.id.action_theme) { showThemeDialog(); return true; }
             if (id == R.id.action_privacy) { ads.showPrivacyOptions(); return true; }
             if (id == R.id.action_about) { showAbout(); return true; }
@@ -108,7 +115,9 @@ public class GamesActivity extends AppCompatActivity {
     private void setupPager() {
         pagerAdapter = new DayPagerAdapter(
                 game -> GameSheet.newInstance(game).show(getSupportFragmentManager(), "game"),
-                this::load);
+                this::load,
+                this::openChannels,
+                this::showAllChannels);
         pager.setAdapter(pagerAdapter);
 
         pager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
@@ -133,6 +142,15 @@ public class GamesActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void openChannels() {
+        startActivity(new Intent(this, ChannelsActivity.class));
+    }
+
+    private void showAllChannels() {
+        ChannelSettings.showAll(this);
+        pagerAdapter.setHiddenKeys(ChannelSettings.hiddenKeys(this));
     }
 
     // ---- Data ----
@@ -170,7 +188,7 @@ public class GamesActivity extends AppCompatActivity {
         if (selected < 0) selected = schedule.todayIndex();
         if (selected < 0) selected = 0;
 
-        pagerAdapter.submit(schedule.games);
+        pagerAdapter.submit(schedule.games, ChannelSettings.hiddenKeys(this));
         if (mediator != null) mediator.detach();
         mediator = new TabLayoutMediator(tabs, pager,
                 (tab, pos) -> tab.setText(schedule.labels.get(pos)));
@@ -267,6 +285,7 @@ public class GamesActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        pagerAdapter.setHiddenKeys(ChannelSettings.hiddenKeys(this));
         ads.resume();
     }
 
