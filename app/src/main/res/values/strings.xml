@@ -28,4 +28,13 @@
     <string name="sheet_add_calendar">Adicionar ao calendário</string>
     <string name="toast_invalid_date">Data inválida</string>
     <string name="toast_no_calendar">Sem aplicação de calendário</string>
+
+    <string name="menu_channels">Canais</string>
+    <string name="channels_title">Canais</string>
+    <string name="channels_intro">Escolhe os canais que queres ver. Os canais desligados ficam escondidos da lista de jogos.</string>
+    <string name="channels_summary">%1$d de %2$d canais visíveis</string>
+    <string name="channels_show_all">Mostrar todos</string>
+    <string name="channel_visible">Visível</string>
+    <string name="channel_hidden">Escondido</string>
+    <string name="nav_back">Voltar</string>
 </resources>
