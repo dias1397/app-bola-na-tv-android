@@ -14,10 +14,10 @@ import java.util.Set;
 public final class ChannelSettings {
 
     public static final String[] CHANNELS = {
-            "SportTV", "DAZN", "Canal 11", "Sporting TV", "BTV",
+            "SportTV", "DAZN", "Canal 11", "Sporting TV", "BETANO", "BTV",
             "A Bola TV", "Porto Canal", "RTP", "V+"
     };
-    private static final String[] FAMILIES = {"sporttv", "dazn", "rtp", " benfica"};
+    private static final String[] FAMILIES = {"sporttv", "dazn", "rtp"};
 
     private static final String PREFS = "channel_settings";
     private static final String KEY_HIDDEN = "hidden";
@@ -27,6 +27,7 @@ public final class ChannelSettings {
     /** "SportTV 2" -> "sporttv", "DAZN 4" -> "dazn", "Canal 11" -> "canal11". */
     public static String keyOf(String channel) {
         String key = normalize(channel);
+        if (key.startsWith("benficatv")) return "btv";
         for (String family : FAMILIES) {
             if (key.startsWith(family)) return family;
         }
