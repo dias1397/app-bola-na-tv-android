@@ -30,6 +30,11 @@ jobs:
       - name: Make the Gradle wrapper executable
         run: chmod +x ./gradlew
 
+      - name: Decode app.properties file
+        env:
+          SECRETS_PROPERTIES: ${{ secrets.PROPERTIES_FILE }}
+        run: echo -n "$SECRETS_PROPERTIES" | base64 -d > app/src/main/assets/app.properties
+
       - name: Lint, unit tests and debug build
         run: ./gradlew lintDebug testDebugUnitTest assembleDebug
 
