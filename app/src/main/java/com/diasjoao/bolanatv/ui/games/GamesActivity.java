@@ -21,6 +21,7 @@ import com.diasjoao.bolanatv.R;
 import com.diasjoao.bolanatv.ads.AdsManager;
 import com.diasjoao.bolanatv.data.Game;
 import com.diasjoao.bolanatv.data.GamesApi;
+import com.diasjoao.bolanatv.settings.ChannelSettings;
 import com.diasjoao.bolanatv.settings.ThemeSettings;
 import com.diasjoao.bolanatv.ui.channels.ChannelsActivity;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -114,7 +115,9 @@ public class GamesActivity extends AppCompatActivity {
     private void setupPager() {
         pagerAdapter = new DayPagerAdapter(
                 game -> GameSheet.newInstance(game).show(getSupportFragmentManager(), "game"),
-                this::load);
+                this::load,
+                this::openChannels,
+                this::showAllChannels);
         pager.setAdapter(pagerAdapter);
 
         pager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
@@ -139,6 +142,15 @@ public class GamesActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void openChannels() {
+        startActivity(new Intent(this, ChannelsActivity.class));
+    }
+
+    private void showAllChannels() {
+        ChannelSettings.showAll(this);
+        pagerAdapter.setHiddenKeys(ChannelSettings.hiddenKeys(this));
     }
 
     // ---- Data ----
@@ -176,7 +188,7 @@ public class GamesActivity extends AppCompatActivity {
         if (selected < 0) selected = schedule.todayIndex();
         if (selected < 0) selected = 0;
 
-        pagerAdapter.submit(schedule.games);
+        pagerAdapter.submit(schedule.games, ChannelSettings.hiddenKeys(this));
         if (mediator != null) mediator.detach();
         mediator = new TabLayoutMediator(tabs, pager,
                 (tab, pos) -> tab.setText(schedule.labels.get(pos)));
@@ -273,6 +285,7 @@ public class GamesActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        pagerAdapter.setHiddenKeys(ChannelSettings.hiddenKeys(this));
         ads.resume();
     }
 
