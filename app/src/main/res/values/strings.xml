@@ -44,4 +44,27 @@
     </plurals>
     <string name="channels_edit">Alterar canais</string>
     <string name="channels_show_all_channels">Mostrar todos os canais</string>
+
+    <string name="menu_favorite">Equipa favorita</string>
+    <string name="favorite_title">Equipa favorita</string>
+    <string name="favorite_intro">Escolhe uma equipa. Os jogos dela aparecem em destaque no topo de cada dia.</string>
+    <string name="favorite_current">O teu favorito</string>
+    <string name="favorite_remove">Remover</string>
+    <string name="favorite_include">Incluir também jogos de</string>
+    <string name="favorite_women">Feminino</string>
+    <string name="favorite_youth">Formação</string>
+    <string name="favorite_include_hint">Formação inclui sub-23, sub-19 e outros escalões.</string>
+    <string name="favorite_choose">Escolher equipa</string>
+    <string name="favorite_change">Mudar de equipa</string>
+    <string name="favorite_search_hint">Pesquisar equipa</string>
+    <string name="favorite_no_results">Nenhuma equipa encontrada</string>
+    <string name="favorite_group_title">%1$s · %2$s</string>
+
+    <string name="intro_title">Escolhe a tua equipa</string>
+    <string name="intro_message">Segue uma equipa e vê os jogos dela em destaque, no topo de cada dia.</string>
+    <string name="intro_choose">Escolher equipa</string>
+    <string name="intro_dismiss">Agora não</string>
+
+    <string name="section_others">Outros jogos</string>
+    <string name="row_favorite_suffix">Jogo da tua equipa favorita.</string>
 </resources>

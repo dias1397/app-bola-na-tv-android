@@ -16,4 +16,9 @@
     <color name="bp_tab_selected">#3FAE6E</color>
     <color name="bp_tab_indicator">#3FAE6E</color>
     <color name="bp_skeleton">#2F3D35</color>
+
+    <color name="bp_fav_band">#1F3A2A</color>
+    <color name="bp_fav_band_text">#BFE8CF</color>
+    <color name="bp_fav_outline">#2D6B47</color>
+    <color name="bp_fill">#26322C</color>
 </resources>
