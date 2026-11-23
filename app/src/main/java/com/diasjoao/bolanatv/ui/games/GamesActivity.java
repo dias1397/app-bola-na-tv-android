@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,8 +21,11 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.diasjoao.bolanatv.R;
 import com.diasjoao.bolanatv.ads.AdsManager;
 import com.diasjoao.bolanatv.data.Game;
+import com.diasjoao.bolanatv.data.GameCategory;
 import com.diasjoao.bolanatv.data.GamesApi;
+import com.diasjoao.bolanatv.data.TeamCatalog;
 import com.diasjoao.bolanatv.settings.ChannelSettings;
+import com.diasjoao.bolanatv.settings.FavoriteSettings;
 import com.diasjoao.bolanatv.settings.ThemeSettings;
 import com.diasjoao.bolanatv.ui.channels.ChannelsActivity;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -170,6 +174,30 @@ public class GamesActivity extends AppCompatActivity {
                 schedule = DaySchedule.from(games, getString(R.string.tab_today));
                 showSchedule();
                 emptyView.setVisibility(schedule.isEmpty() ? View.VISIBLE : View.GONE);
+
+                TeamCatalog catalog = TeamCatalog.get(getBaseContext());
+                for (TeamCatalog.Group g : catalog.groups()) {
+                    Log.d("Favorites", g.country + " · " + g.name + ": " + g.teams.size() + " teams");
+                }
+
+                String[] leagues = {"Liga Portugal Betclic", "LaLiga EA", "Premier League", "Ligue 1",
+                        "1. Bundesliga", "Serie A", "Brasileir"};
+                for (Game game : games) {
+                    String competition = game.getCompetition() == null ? "" : game.getCompetition().trim();
+                    boolean topLeague = false;
+                    for (String l : leagues) if (competition.startsWith(l)) topLeague = true;
+
+                    if (topLeague && GameCategory.of(game) == GameCategory.MEN) {
+                        if (catalog.find(game.getHome()) == null)
+                            Log.d("Favorites", "UNMATCHED: " + game.getHome() + " | " + competition);
+                        if (catalog.find(game.getAway()) == null)
+                            Log.d("Favorites", "UNMATCHED: " + game.getAway() + " | " + competition);
+                    }
+                    if (FavoriteSettings.sideOf(catalog, "benfica", false, false, game) != FavoriteSettings.NONE) {
+                        Log.d("Favorites", "BENFICA: " + game.getHome() + " - " + game.getAway()
+                                + " | " + competition);
+                    }
+                }
             }
 
             @Override
